@@ -1,0 +1,82 @@
+<main class="content">
+    <div class="container">
+      <div class="row">
+        <div class="col-12"> 
+            {{#if (and posts.length (eq pageNum 1) (eq template "index"))}}
+              {{> fresh-post (head posts)}}
+            {{/if}}
+            
+            {{#if (or (eq template "tagged") (eq template "series")) }}
+              <div class="blog-title my-5">
+                {{#if tagDescription}}
+                  <h1><span>Blog /</span> {{tagDescription.title}}</h1>
+                {{else}}
+                  <h1><span>Blog /</span> {{tag}}{{series}}</h1>
+                {{/if}}
+              </div>
+            {{/if}}
+          </div>
+          <div class="col-12 mt-5 mb-5">
+            <div class="row justify-content-md-center  align-items-center">
+             <div class="col-12 col-md-6 text-md-right text-center">
+                Our experts help you succeed in your BigData and Cloud projects
+              </div>
+              <div class="col-12 col-md-5">         
+                <a href="/contact" class="btn-enroll-header">LEARN MORE</a>
+              </div>
+            </div>
+          </div>
+           <aside class="col-md-3 sidebar">
+              {{> sidebar}}
+          </aside> 
+          <main class="col-md-9">
+            <div class="posts">
+              {{#if posts.length}}
+                {{#each (tail posts)}}
+                  {{> post this}}
+                {{/each}}                
+              {{else}}
+                {{> no-content}}
+              {{/if}}
+              </div>
+          </main> 
+          {{#unless (eq total 1)}}
+             <div class="col-12">
+                <p class="blog-pagination">
+                  Showing {{posts.length}} posts out of {{total}} total, page {{pageNum}}
+                </p>
+                <p class="blog-pagination">
+                  {{#if prevPage}}<a href="{{blogRoutePrefix}}/page/{{prevPage}}">Previous page</a>{{/if}}
+                  {{#if nextPage}}<a href="{{blogRoutePrefix}}/page/{{nextPage}}">Next page</a>{{/if}}
+                </p>
+            </div>
+          {{/unless}}
+          <div class="col-12">
+            <div class="header-title" id="HandsOnBanner">
+                <div class="header-title__img">
+                    <img src="/static/base/img/Image43.png" class="img-fluid aheight" alt="">
+                </div>
+                <div class="header-title__text"> 
+                  <div class="row">          
+           
+                      <div class="col-md-4">
+                        <img src="/static/base/img/prestologo.png" class="img-fluid presto" alt="">
+                        <h6>BigData Boutique in cooperation with Starburst</h6>
+                        <img src="/static/base/img/Starbust_white.png" class="img-fluid starbust" alt="">
+                      </div>
+                      <div class="col-md-5">
+                          <h2>Hands-on Presto: Fast SQL on Anything</h2>                
+                          <h5>Everything you need to know about Presto SQL to get started querying data on S3, HDFS and pretty much anywhere</h5>
+                          <div class="btn-enroll-header-container">
+                              <a class="btn-enroll-header" data-interaction="WorkshopRegistration">Register Now</a>
+                          </div>
+                      </div>
+                       <div class="col-md-2">
+                           <div class="free">FREE EVENT</div>
+                       </div>  
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main> 
