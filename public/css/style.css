@@ -1321,14 +1321,10 @@ footer {
   align-items: center;
   width: 100%;
   margin-top: 30px;
-  max-width: 300px;
-  max-height: 600px;
 }
 
 .horizontal-banner {
   display: block;
-  max-width: 760px;
-  max-height: 154px;
 }
 
 .subscribe-modal .modal-body {
