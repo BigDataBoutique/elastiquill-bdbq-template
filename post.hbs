@@ -1,10 +1,10 @@
 <main class="content">
   <div class="container">
     <div class="fresh-post">
-      <div class="fresh-post__img col-lg-6 px-0">
+      <div class="fresh-post__img col-lg-5 px-0">
         <img src="{{#if post.metadata.header_image_url}}{{{post.metadata.header_image_url}}}{{else}}/static/base/img/post1.jpg{{/if}}" alt="">
       </div>
-      <div class="col-lg-6 px-4 px-lg-5 py-3 d-flex flex-column">
+      <div class="col-lg-7 px-4 px-lg-5 py-3 d-flex flex-column">
           <div class="text-muted mb-2 d-flex justify-content-between">
             <time class="post-date" datetime="{{post.published_at}}">
               {{post.published_at_str}}
