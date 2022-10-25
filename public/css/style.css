@@ -437,6 +437,38 @@ main.post-page {
   font-size: 2rem;
 }
 
+.post-content h1:has(a),
+.post-content h2:has(a),
+.post-content h3:has(a),
+.post-content h4:has(a),
+.post-content h5:has(a),
+.post-content h6:has(a) {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.post-content h1 a:has(i),
+.post-content h2 a:has(i),
+.post-content h3 a:has(i),
+.post-content h4 a:has(i),
+.post-content h5 a:has(i),
+.post-content h6 a:has(i) {
+  margin-top: 5px;
+  font-size: 16px;
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.post-content h1:hover a:has(i),
+.post-content h2:hover a:has(i),
+.post-content h3:hover a:has(i),
+.post-content h4:hover a:has(i),
+.post-content h5:hover a:has(i),
+.post-content h6:hover a:has(i) {
+  opacity: 1;
+}
+
 .post-content a {
   color: #ea3798;
   word-wrap: break-word;
