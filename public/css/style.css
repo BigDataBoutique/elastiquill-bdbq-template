@@ -252,6 +252,10 @@ main,
   font-weight: 600;
 }
 
+.fresh-post {
+  padding: 0;
+}
+
 .fresh-post .post-title,
 .post .post-title {
   font-size: 2rem;
@@ -772,6 +776,11 @@ main.post-page {
   background-color: #ffffff;
   box-shadow: 0px 30px 40px rgba(0, 0, 0, 0.05);
   border-radius: 10px;
+}
+
+.fresh-post > div:first-child {
+  border: 1px solid rgba(90, 99, 176, 0.25);
+  border-radius: 10px 10px 0 0;
 }
 
 .fresh-post > div:last-child {
@@ -1617,6 +1626,10 @@ footer {
     width: 40px;
     height: 40px;
     font-size: 24px;
+  }
+
+  .fresh-post > div:first-child {
+    border-radius: 0 10px 10px 0;
   }
 
   .fresh-post > div:last-child {
