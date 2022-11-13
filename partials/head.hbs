@@ -1,26 +1,28 @@
 {{#unless isLocalhost}}
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-PJDLG3H');</script>
+<!-- See https://developers.google.com/tag-manager/devguide#datalayer -->
 <script>
-  !function(q,e,v,n,t,s){if(q.qp) return; n=q.qp=function(){n.qp?n.qp.apply(n,arguments):n.queue.push(arguments);}; n.queue=[];t=document.createElement(e);t.async=!0;t.src=v; s=document.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t,s);}(window, 'script', 'https://a.quora.com/qevents.js');
-  qp('init', '174a276186a34038b2dbdd3734a69d78');
-  qp('track', 'ViewContent');
+    window.dataLayer = window.dataLayer || [];
 </script>
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-26MH71FS54"></script>
+<!-- Google Tag Manager -->
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-26MH71FS54');
+    (function (w, d, s, l, i) {
+        w[l] = w[l] || []; w[l].push({
+            'gtm.start':
+                new Date().getTime(), event: 'gtm.js'
+        }); var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-PJDLG3H');
 </script>
-
-<noscript><img height="1" width="1" style="display:none" src="https://q.quora.com/_/ad/174a276186a34038b2dbdd3734a69d78/pixel?tag=ViewContent&noscript=1"/></noscript>
+<!-- End Google Tag Manager -->
+<!-- Quora Pixel Code (JS Helper) -->
+<script>
+    !function (q, e, v, n, t, s) { if (q.qp) return; n = q.qp = function () { n.qp ? n.qp.apply(n, arguments) : n.queue.push(arguments); }; n.queue = []; t = document.createElement(e); t.async = !0; t.src = v; s = document.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s); }(window, 'script', 'https://a.quora.com/qevents.js');
+    qp('init', '174a276186a34038b2dbdd3734a69d78');
+    qp('track', 'ViewContent');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://q.quora.com/_/ad/174a276186a34038b2dbdd3734a69d78/pixel?tag=ViewContent&noscript=1" /></noscript>
+<!-- End of Quora Pixel Code -->
 {{/unless}}
 
 <meta charset="utf-8">
@@ -76,5 +78,3 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 <link rel="stylesheet" href="/static/theme/css/style.css">
-
-{{> google-analytics}}
