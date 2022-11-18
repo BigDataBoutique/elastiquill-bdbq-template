@@ -518,9 +518,29 @@ main.post-page {
   padding: 2px;
 }
 
-.post-content pre code {
-  padding: 1rem;
-  border-radius: 3px;
+.post-content pre code:not(.hljs) {
+  background: #f0f0f0;
+}
+
+.post-content pre:not(:has(.hljs)) {
+  scrollbar-width: thin;
+  padding: 0.5em;
+  background: #f0f0f0;
+}
+
+.post-content pre:not(:has(.hljs))::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.post-content pre:not(:has(.hljs))::-webkit-scrollbar-track {
+  border-radius: 8px;
+  background-color: #efefef;
+}
+
+.post-content pre:not(:has(.hljs))::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background-color: #aaa;
 }
 
 .post-content a[data-fancybox="gallery"] {

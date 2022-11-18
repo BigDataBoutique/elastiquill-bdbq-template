@@ -10,6 +10,19 @@ $(function() {
   stickyNav();
   $(window).on("resize", stickyNav);
   $(window).scroll(stickyNav);
+
+  $("pre code").each(function() {
+    const classes = $(this)
+      .attr("class")
+      .split(" ");
+    const lang = classes.find(item => item.startsWith("language-"));
+    if (lang) {
+      $(this)
+        .closest("pre")
+        .attr("data-language", lang.replace("language-", ""));
+    }
+    hljs.highlightBlock($(this)[0]);
+  });
 });
 
 function copyText(text) {
