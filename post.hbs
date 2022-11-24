@@ -40,9 +40,29 @@
         </div>
         {{/if}}
         {{#if metaKeywords}}
-          <a class="horizontal-banner mb-5 mb-lg-0 mt-lg-5 order-1 order-lg-3" href="{{#if isLocalhost}}http://localhost:3000{{else}}https://bigdataboutique.com{{/if}}/b/redirect/{{toLowerCase metaKeywords}}?utm_source=blog&utm_medium=banner760x154&utm_campaign=es&utm_content=FO" target="_blank" rel="noopener noreferrer">
-            <img src="{{#if isLocalhost}}http://localhost:3000{{else}}https://bigdataboutique.com{{/if}}/b/blog/{{toLowerCase metaKeywords}}?v=2" alt="{{toLowerCase metaKeywords}}" />
-          </a>
+          <div class="order-1 order-lg-3">
+            <div class="post-cta" data-keywords="{{metaKeywords}}">
+              <div class="text"></div>
+              <div class="actions">
+                <button
+                  class="calendly-button"
+                  type="button"
+                  data-toggle="modal"
+                  data-target="#calendlyModal"
+                >
+                  Schedule a Meeting
+                </button>
+                <button
+                  class="contact-button"
+                  type="button"
+                  data-toggle="modal"
+                  data-target="#contactModal"
+                >
+                  Contact Us
+                </button>
+              </div>
+            </div>
+          </div>
         {{/if}}
       </div>
       <div class="post-row-sidebar">   
@@ -115,12 +135,5 @@
 {{/if}}
 
 {{> subscribe-modal}}
-
-<script>
-$(function() {
-  $('.post-content').find('img').each(function() {
-    var href = $(this).attr('src');
-    $(this).replaceWith($('<a data-fancybox="gallery" href="' + href + '"><img src="' + href + '"></a>'));
-  });
-});
-</script>
+{{> calendly-modal}}
+{{> contact-modal subject=post.title}}

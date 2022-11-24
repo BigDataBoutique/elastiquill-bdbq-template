@@ -42,7 +42,7 @@ main,
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  right: 0;
   z-index: 1000;
   padding: 15px 0;
   background-color: #ffffff;
@@ -108,13 +108,25 @@ main,
 }
 
 .navbar .navbar-nav .button-small {
-  margin-top: 10px;
-  color: var(--color-nav-link);
+  display: inline-block;
+  cursor: pointer;
+  text-align: center;
+  color: #262626;
+  font-weight: 400;
+  line-height: 1;
+  background: transparent;
+  border-radius: 5px;
+  padding: 12px 35px 11px;
+  border: 1px solid var(--color-secondary);
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .navbar .navbar-nav .button-small:hover,
-.navbar .navbar-nav .button-small:focus {
-  color: #ffffff;
+.navbar .navbar-nav .button-small:focus-visible {
+  background-color: var(--color-secondary);
+  color: #fff;
+  outline: none;
+  text-decoration: none;
 }
 
 .navbar .navbar-toggler {
@@ -173,9 +185,10 @@ main,
 }
 
 .sticky-navbar {
-  background-color: #ffffff;
-  box-shadow: 0 16px 23px -9px rgba(0, 0, 0, 0.14);
-  transition: padding 0.2s ease-out;
+  background-color: hsla(0, 0%, 100%, 0.8);
+  transform: translateZ(0);
+  backdrop-filter: saturate(180%) blur(5px);
+  box-shadow: inset 0 -1px 0 0 rgb(0 0 0 / 5%);
 }
 
 .sticky-navbar .dropdown-menu {
@@ -191,40 +204,6 @@ main,
 .sticky-navbar .navbar-toggler {
   color: rgba(0, 0, 0, 0.5);
   border-color: rgba(0, 0, 0, 0.1);
-}
-
-.button-small {
-  display: inline-block;
-  font-size: 16px;
-  font-weight: 600;
-  border-radius: 3px;
-  border: solid 1px #6217e2;
-  color: #ffffff;
-  padding: 7px 24px;
-  transition: 0.1s;
-}
-
-.button-small:hover,
-.button-small:active,
-.button-small:focus {
-  border-color: #6158fc;
-  background-color: #6158fc;
-  color: #ffffff;
-  text-decoration: none;
-}
-
-.button-small.light {
-  color: #38383b;
-}
-
-.button-small.light:hover,
-.button-small.light:active,
-.button-small.light:focus {
-  color: #ffffff;
-}
-
-.button-small.light:disabled {
-  opacity: 0.2;
 }
 
 .post-box__content-header {
@@ -1050,21 +1029,22 @@ blockquote em {
 /* Custom */
 
 .bdbq-banner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background-color: #f5eeff;
   border-radius: 5px;
   padding-left: 24px;
   padding-right: 24px;
 }
 
-.bdbq-banner-button {
-  display: inline-block;
-  min-width: 25%;
-  color: #fff;
-  background: transparent linear-gradient(270deg, #efa52f 0%, #eb596b 100%) 0%
-    0% no-repeat padding-box;
-  border-radius: 5px;
-  padding: 8px 24px;
-  text-transform: uppercase;
+.bdbq-banner .actions {
+  margin-top: 20px;
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
 }
 
 .sidebar {
@@ -1388,6 +1368,12 @@ footer {
   display: block;
 }
 
+.subscribe-modal .modal-content {
+  border-radius: 10px;
+  background-color: transparent;
+  border: none;
+}
+
 .subscribe-modal .modal-body {
   padding: 0;
 }
@@ -1395,6 +1381,7 @@ footer {
 .subscribe-form {
   position: relative;
   background-color: var(--color-secondary);
+  border-radius: 10px;
   padding: 30px 30px 40px 30px;
   color: #fff;
 }
@@ -1467,6 +1454,173 @@ footer {
   border: 1px solid var(--color-secondary-hover);
 }
 
+.calendly-modal .modal-dialog,
+.contact-modal .modal-dialog {
+  box-shadow: 0px 20px 60px rgba(0, 0, 0, 0.1);
+}
+
+.calendly-modal .modal-content,
+.contact-modal .modal-content {
+  background-color: transparent;
+  border: none;
+}
+
+.calendly-modal .modal-body,
+.contact-modal .modal-body {
+  position: relative;
+  border-radius: 10px;
+  background-color: #fff;
+  padding: 0;
+  overflow: hidden;
+}
+
+.calendly-modal .close,
+.contact-modal .close {
+  position: absolute;
+  z-index: 10;
+  top: 5px;
+  right: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  color: #292929;
+  font-size: 1.6rem;
+  opacity: 0.8;
+}
+
+.contact-modal .modal-body {
+  padding: 20px 30px 30px 30px;
+}
+
+.contact-modal .form-control {
+  background: #fcfcfc;
+  border-radius: 5px;
+  padding: 10px 15px;
+  font-size: 18px;
+  height: 50px;
+  border-color: #ccc;
+}
+
+.contact-modal .form-control:active,
+.contact-modal .form-control:focus-visible {
+  border-color: (--color-secondary);
+}
+
+.contact-modal h2 {
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 35px;
+  color: #262626;
+  margin: 0 0 10px 0;
+}
+
+.contact-modal p {
+  font-size: 18px;
+  line-height: 26px;
+  color: #292929;
+  margin: 0 0 10px 0;
+}
+
+.contact-modal * + form {
+  margin-top: 30px;
+}
+
+.contact-modal .privacy input {
+  margin-top: 7px;
+}
+
+.contact-modal .privacy label {
+  font-size: 18px;
+  line-height: 25px;
+  color: #292929;
+}
+
+.contact-modal .privacy label a,
+.contact-modal .privacy label a:visited {
+  color: var(--color-secondary);
+  text-decoration: underline;
+}
+
+.contact-modal .submit-button {
+  display: block;
+  margin: 30px auto 0 auto;
+  padding: 15px 73px;
+  font-size: 18px;
+  line-height: 20px;
+  color: #ffffff;
+  background: #f09132;
+  box-shadow: 0px 20px 20px -15px rgba(78, 47, 11, 0.12);
+  border-radius: 5px;
+  border: none;
+}
+
+.post-cta {
+  margin: 0 0 50px 0;
+}
+
+.post-cta .text:not(:empty) {
+  margin-bottom: 40px;
+}
+
+.post-cta .text {
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 1.1;
+  text-align: center;
+  color: #262626;
+}
+
+.post-cta .text b {
+  font-weight: 400;
+  color: var(--color-primary);
+}
+
+.post-cta .actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.calendly-button {
+  padding: 15px 36px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  color: #fff;
+  background-color: var(--color-secondary);
+  border: 1px solid var(--color-secondary);
+  border-radius: 5px;
+  box-shadow: 0px 20px 20px -15px rgba(11, 18, 78, 0.12);
+  transition: 0.3s;
+}
+
+.calendly-button:hover,
+.calendly-button:focus-visible {
+  background-color: transparent;
+  color: #262626;
+}
+
+.contact-button {
+  padding: 15px 34px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  color: #262626;
+  background-color: transparent;
+  border: 1px solid var(--color-secondary);
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.contact-button:hover,
+.contact-button:focus-visible {
+  background-color: var(--color-secondary);
+  color: #fff;
+}
+
 @media (max-width: 769px) {
   .blogText {
     position: relative;
@@ -1498,10 +1652,6 @@ footer {
     height: 55px;
   }
 
-  .sticky-navbar {
-    background-color: #ffffff;
-  }
-
   .footer-sitemap {
     justify-content: center;
     flex-direction: row;
@@ -1527,6 +1677,14 @@ footer {
 
   .contact-form .submit-button {
     width: auto;
+  }
+
+  .contact-modal .modal-body {
+    padding: 50px 60px;
+  }
+
+  .post-cta .text {
+    font-size: 50px;
   }
 }
 
@@ -1673,10 +1831,22 @@ footer {
     width: 300px;
     margin-left: 30px;
   }
+
+  .post-cta {
+    margin: 80px 0 40px 0;
+  }
 }
 
 @media (min-width: 1200px) {
   .navbar .navbar-nav .nav-item {
     margin-left: 30px;
+  }
+
+  .bdbq-banner {
+    flex-direction: row;
+  }
+
+  .bdbq-banner .actions {
+    margin-top: 0;
   }
 }

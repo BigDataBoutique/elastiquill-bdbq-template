@@ -1,6 +1,25 @@
-<div class="bdbq-banner my-5 py-4 text-center">
-  <div class="d-inline-block pr-2 pr-lg-5 h5 m-0">
+<div class="bdbq-banner my-5 py-4">
+  <div class="d-inline-block pr-lg-5 h5 mt-1 mt-xl-0 mb-0 text-center">
     Our experts help you succeed in your BigData projects
   </div>
-  <a href="https://bigdataboutique.com/contact" class="d-inline-block align-baseline btn btn-enroll-header bdbq-banner-button mt-3 mt-md-0">Contact Us</a>
+  <div class="actions">
+    <button
+      class="calendly-button"
+      type="button"
+      data-toggle="modal"
+      data-target="#calendlyModal"
+    >
+      Schedule a Meeting
+    </button>
+    <button
+      class="contact-button"
+      type="button"
+      data-toggle="modal"
+      data-target="#contactModal"
+    >
+      Contact Us
+    </button>
+  </div>
+  {{> calendly-modal}}
+  {{> contact-modal subject="Blog home banner"}}
 </div>

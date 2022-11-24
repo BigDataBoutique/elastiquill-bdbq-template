@@ -1,0 +1,99 @@
+<div
+  class="modal fade contact-modal"
+  id="contactModal"
+  tabindex="-1"
+  role="dialog"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h2>Contact Us</h2>
+        <p>Fill in the fields below</p>
+        <form
+          id="contactForm"
+          class="needs-validation"
+          action="/contact"
+          method="post"
+        >
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true" class="fa fa-times"></span>
+          </button>
+          <div class="form-group">
+            <input
+              id="contact-input-name"
+              type="text"
+              class="form-control{{#if feedback.name_error}} is-invalid{{/if}}"
+              name="name"
+              placeholder="Name*"
+              value="{{ feedback.name }}"
+              aria-label="Name (required)"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <input
+              id="contact-input-email"
+              type="email"
+              class="form-control{{#if feedback.email_error}} is-invalid{{/if}}"
+              name="email"
+              placeholder="Email*"
+              value="{{ feedback.email }}"
+              aria-label="Email (required)"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <input
+              id="contact-input-company"
+              type="text"
+              class="form-control"
+              name="company"
+              placeholder="Company Name"
+              value="{{ feedback.company }}"
+              aria-label="Company Name"
+            />
+          </div>
+          <div class="form-group">
+            <input
+              id="contact-input-phone"
+              type="text"
+              class="form-control"
+              name="phone"
+              placeholder="Phone"
+              value="{{ feedback.phone }}"
+              aria-label="Phone"
+            />
+          </div>
+          <div class="form-group privacy">
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="contact-privacy"
+                name="privacy"
+                required
+              />
+              <label class="form-check-label" for="contact-privacy">
+                I have read and agree to BigData Boutique's
+                <a href="https://bigdataboutique.com/privacy" target="_blank">Privacy Policy</a>
+              </label>
+              {{#if feedback.privacy_error}}
+              <div class="d-block invalid-feedback" style="color: #ffe7e9">
+                You must agree before submitting.
+              </div>
+              {{/if}}
+            </div>
+          </div>
+          <input
+            id="input-subject"
+            name="subject"
+            type="hidden"
+            value="CTA - {{subject}}"
+          />
+          <button type="submit" class="submit-button">Send</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
