@@ -59,7 +59,7 @@ $(function() {
     const keywords = $(this).attr("data-keywords");
     if (keywords) {
       const response = await fetch(
-        `https://bigdataboutique.com/b/ctas/${keywords}`
+        `https://bigdataboutique.com/b/ctas/${keywords.toLowerCase()}`
       );
       if (response.ok) {
         try {
