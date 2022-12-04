@@ -23,10 +23,10 @@
             <input
               id="input-name"
               type="text"
-              class="form-control{{#if feedback.name_error}} is-invalid{{/if}}"
+              class="form-control"
               name="name"
               placeholder="Name*"
-              value="{{ feedback.name }}"
+              value=""
               aria-label="Name (required)"
               required
             />
@@ -35,10 +35,10 @@
             <input
               id="input-email"
               type="email"
-              class="form-control{{#if feedback.email_error}} is-invalid{{/if}}"
+              class="form-control"
               name="email"
               placeholder="Email*"
-              value="{{ feedback.email }}"
+              value=""
               aria-label="Email (required)"
               required
             />
@@ -62,14 +62,11 @@
             id="input-subject"
             name="subject"
             type="hidden"
-            value="Newsletter subscription"
+            value="Newsletter subscription - {{post.title}}"
           />
-          <input
-            id="input-content"
-            name="content"
-            type="hidden"
-            value="Newsletter subscription from blog post {{post.title}}"
-          />
+          <div class="form-group">
+            <div class="g-recaptcha" data-sitekey={{recaptchaClientKey}}></div>
+          </div>
           <button type="submit" class="submit-button">Subscribe</button>
         </form>
       </div>
