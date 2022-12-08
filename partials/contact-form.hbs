@@ -1,4 +1,4 @@
-<form action="/contact" method="POST" class="contact-form" id="blogContactForm">
+<form action="{{contactFormPostUrl}}" method="POST" class="contact-form" id="blogContactForm">
   <div>
     <p>Questions or comments? Get in touch with us to learn more!</p>
 
@@ -44,6 +44,26 @@
     <div class="form-group {{validity.content}} col-md-12">
       <label for="inputContent">Message</label>
       <textarea name='content' class="form-control" id="inputContent" rows="6">{{values.content}}</textarea>
+    </div>
+  </div>
+  <div class="form-group privacy">
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        id="contact-privacy"
+        name="privacy"
+        required
+      />
+      <label class="form-check-label" for="contact-privacy">
+        I have read and agree to BigData Boutique's
+        <a href="https://bigdataboutique.com/privacy" target="_blank">Privacy Policy</a>
+      </label>
+      {{#if feedback.privacy_error}}
+      <div class="d-block invalid-feedback" style="color: #ffe7e9">
+        You must agree before submitting.
+      </div>
+      {{/if}}
     </div>
   </div>
   <div class="form-row">

@@ -1390,6 +1390,15 @@ footer {
   margin-bottom: 20px;
 }
 
+.subscribe-form .privacy {
+  margin-bottom: 0;
+}
+
+.subscribe-form .privacy a {
+  color: #fff;
+  text-decoration: underline;
+}
+
 .subscribe-form .close {
   position: absolute;
   top: 5px;
