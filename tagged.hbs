@@ -18,8 +18,12 @@
         {{> no-content}}
       {{/if}}
     </div>
-    {{#if totalPages}}
-      {{> pagination}}
-    {{/if}}
+  <p class="blog-pagination">
+    Showing {{posts.length}} posts out of {{total}} total, page {{pageNum}}
+  </p>
+  <p class="blog-pagination">
+    {{#if prevPage}}<a href="{{blogRoutePrefix}}/page/{{prevPage}}">Previous page</a>{{/if}}
+    {{#if nextPage}}<a href="{{blogRoutePrefix}}/page/{{nextPage}}">Next page</a>{{/if}}
+  </p>
   </div>
 </main>
