@@ -1,9 +1,7 @@
 {{#unless isLocalhost}}
-<!-- See https://developers.google.com/tag-manager/devguide#datalayer -->
 <script>
     window.dataLayer = window.dataLayer || [];
 </script>
-<!-- Google Tag Manager -->
 <script>
     (function (w, d, s, l, i) {
         w[l] = w[l] || []; w[l].push({
@@ -14,19 +12,13 @@
                 'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
     })(window, document, 'script', 'dataLayer', 'GTM-PJDLG3H');
 </script>
-<!-- End Google Tag Manager -->
-<!-- Quora Pixel Code (JS Helper) -->
-<script>
-    !function (q, e, v, n, t, s) { if (q.qp) return; n = q.qp = function () { n.qp ? n.qp.apply(n, arguments) : n.queue.push(arguments); }; n.queue = []; t = document.createElement(e); t.async = !0; t.src = v; s = document.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s); }(window, 'script', 'https://a.quora.com/qevents.js');
-    qp('init', '174a276186a34038b2dbdd3734a69d78');
-    qp('track', 'ViewContent');
-</script>
-<noscript><img height="1" width="1" style="display:none" src="https://q.quora.com/_/ad/174a276186a34038b2dbdd3734a69d78/pixel?tag=ViewContent&noscript=1" /></noscript>
-<!-- End of Quora Pixel Code -->
 {{/unless}}
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+{{#if (or (eq template "tagged") (eq template "series")) }}
+<meta name="robots" content="noindex, follow">
+{{/if}}
 
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
