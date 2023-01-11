@@ -92,6 +92,16 @@
             <i class="fas fa-rss"></i>
           </a>
         </div>
+        
+        {{#if post.more_like_this}}
+        <br><h4>More Like This:</h4>
+            {{#each post.more_like_this}}
+            <a href="{{this.url}}" class="text-reset">
+              <div class="h5">{{this.title}}</div>
+            </a>
+            {{/each}}
+        {{/if}}
+        
         {{#if metaKeywords}}
           <a class="vertical-banner d-flex d-lg-none" href="{{#if isLocalhost}}http://localhost:3000{{else}}https://bigdataboutique.com{{/if}}/b/redirect/{{toLowerCase metaKeywords}}?utm_source=blog&utm_medium=banner300x300&utm_campaign=es&utm_content=WCE" target="_blank" rel="noopener nofollow noreferrer">
             <img src="{{#if isLocalhost}}http://localhost:3000{{else}}https://bigdataboutique.com{{/if}}/b/blog/{{toLowerCase metaKeywords}}?v=0" alt="{{toLowerCase metaKeywords}}" />
@@ -123,16 +133,6 @@
     </div>
   </div>
 </div>
-
-{{#if post.more_like_this}}
-<div class="container">
-  <div class="posts row">
-    {{#each post.more_like_this}}
-      {{> post this}}
-    {{/each}}
-  </div>
-</div>
-{{/if}}
 
 {{> subscribe-modal}}
 {{> calendly-modal}}
