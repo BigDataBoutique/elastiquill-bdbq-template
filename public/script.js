@@ -21,6 +21,28 @@ $(function() {
   }
   initModalListener();
 
+  function initLazyLoadImage() {
+    const images = $(".lazy-load-img");
+    if (window.IntersectionObserver) {
+      images.each(function() {
+        const image = this;
+        const io = new IntersectionObserver(function(entries) {
+          if (entries[0].isIntersecting) {
+            if (!$(image).attr("src")) {
+              $(image).attr("src", $(image).data("src"));
+            }
+          }
+        });
+        io.observe(this);
+      });
+    } else {
+      images.each(function() {
+        $(this).attr("src", $(this).data("src"));
+      });
+    }
+  }
+  initLazyLoadImage();
+
   // post image fancybox
   $(".post-content")
     .find("img")
