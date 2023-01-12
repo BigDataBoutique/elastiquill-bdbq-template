@@ -1,6 +1,6 @@
 <div class="col-md-{{#if col}}{{col}}{{else}}4{{/if}} pb-5 d-flex">
   <div class="post-box card">
-    <a href="{{this.url}}" class="post-thumbnail"><img src="{{this.metadata.header_image_url}}" alt=""></a>
+    <a href="{{this.url}}" class="post-thumbnail"><img class="lazy-load-img" data-src="{{this.metadata.header_image_url}}" alt=""></a>
     <div class="post-box-social d-none d-md-block">
       <!-- Generated using https://github.com/mxstbr/sharing -->
       <!-- Sharingbutton Facebook -->

@@ -232,11 +232,18 @@ main,
 }
 
 .fresh-post {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  overflow: hidden;
+  background-color: #ffffff;
+  box-shadow: 0px 30px 40px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(90, 99, 176, 0.25);
+  border-radius: 10px;
   padding: 0;
 }
 
-.fresh-post .post-title,
-.post .post-title {
+.fresh-post .post-title {
   font-size: 2rem;
 }
 
@@ -244,21 +251,10 @@ main,
   display: block;
 }
 
-.fresh-post .fresh-post__img img,
-.post .post__img img {
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-  object-fit: cover;
-}
-
-.fresh-post .fresh-post__img,
-.post .post__img {
+.fresh-post .fresh-post__img {
+  display: grid;
+  align-items: center;
   flex: 1;
-}
-
-.fresh-post__img img {
-  border-radius: 10px 10px 0 0;
 }
 
 .fresh-post__badges a {
@@ -755,39 +751,6 @@ main.post-page {
   -o-object-fit: cover;
 }
 
-/* series */
-
-.post-img {
-  width: 100%;
-}
-
-.post-img img {
-  width: 100%;
-  min-height: 340px;
-}
-
-.post,
-.fresh-post {
-  display: flex;
-  flex-direction: column;
-  margin-top: 1rem;
-  overflow: hidden;
-  background-color: #ffffff;
-  box-shadow: 0px 30px 40px rgba(0, 0, 0, 0.05);
-  border-radius: 10px;
-}
-
-.fresh-post > div:first-child {
-  border: 1px solid rgba(90, 99, 176, 0.25);
-  border-radius: 10px 10px 0 0;
-}
-
-.fresh-post > div:last-child {
-  border: 1px solid rgba(90, 99, 176, 0.25);
-  border-top: none;
-  border-radius: 0 0 10px 10px;
-}
-
 /* blockquote */
 
 blockquote {
@@ -911,9 +874,6 @@ blockquote em {
     padding: 0;
   }
 
-  .post-img {
-    max-width: 580px;
-  }
   img.post_thumbnail {
     height: 200px;
     min-height: 150px;
@@ -922,13 +882,36 @@ blockquote em {
     width: 100%;
   }
 
-  .post,
   .fresh-post {
     flex-direction: row-reverse;
   }
 
-  .fresh-post .post-excerpt,
-  .post .post-excerpt {
+  .fresh-post .fresh-post__img > a {
+    display: block;
+    position: relative;
+    margin: 0 48px 0 0;
+    border: 1px solid #5a63b0;
+    border-radius: 8px;
+  }
+
+  .fresh-post .fresh-post__img > a::before {
+    content: "";
+    display: block;
+    padding-top: 56.25%;
+  }
+
+  .fresh-post .fresh-post__img img {
+    position: absolute;
+    display: block;
+    top: 15px;
+    left: 15px;
+    width: calc(100% - 30px);
+    height: calc(100% - 30px);
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  .fresh-post .post-excerpt {
     width: 91%;
   }
 
@@ -947,19 +930,6 @@ blockquote em {
 
   .post-content .post-badges {
     order: 1;
-  }
-
-  .post-img img {
-    height: 350px;
-    min-height: 350px;
-    max-width: 580px;
-    -o-object-fit: cover;
-    object-fit: cover;
-  }
-
-  .fresh-post .fresh-post__img img,
-  .post .post__img img {
-    border-radius: 0 10px 10px 0;
   }
 
   .posts-widget .card img {
@@ -1821,16 +1791,6 @@ footer {
     width: 40px;
     height: 40px;
     font-size: 24px;
-  }
-
-  .fresh-post > div:first-child {
-    border-radius: 0 10px 10px 0;
-  }
-
-  .fresh-post > div:last-child {
-    border-top: 1px solid rgba(90, 99, 176, 0.25);
-    border-right: none;
-    border-radius: 10px 0 0 10px;
   }
 
   .post-row {
