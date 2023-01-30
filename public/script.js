@@ -11,15 +11,36 @@ $(function() {
   $(window).on("resize", stickyNav);
   $(window).scroll(stickyNav);
 
-  function initModalListener() {
-    $(".modal").on("show.bs.modal", function() {
-      $("header .navbar-container").css("right", getScrollBarWidth());
-    });
-    $(".modal").on("hidden.bs.modal", function() {
-      $("header .navbar-container").css("right", 0);
-    });
+  function getScrollBarWidth() {
+    let $outer = $("<div>")
+        .css({ visibility: "hidden", width: 100, overflow: "scroll" })
+        .appendTo("body"),
+      widthWithScroll = $("<div>")
+        .css({ width: "100%" })
+        .appendTo($outer)
+        .outerWidth();
+    $outer.remove();
+    return 100 - widthWithScroll;
   }
-  initModalListener();
+
+  // bootstrap modal
+  $(".modal").on("show.bs.modal", function() {
+    $("header .navbar-container").css("right", getScrollBarWidth());
+  });
+  $(".modal").on("hidden.bs.modal", function() {
+    $("header .navbar-container").css("right", 0);
+  });
+
+  // bootstrap popover
+  $("[data-bs-toggle=popover]").each(function() {
+    const content = $($(this).attr("data-selector")).html();
+    $(this).popover({
+      sanitize: false,
+      html: true,
+      content,
+      customClass: "bdbq-popover",
+    });
+  });
 
   function initLazyLoadImage() {
     const images = $(".lazy-load-img");
@@ -76,7 +97,22 @@ $(function() {
       }
     });
 
-  // post cta
+  // reposition cta inside post page
+  if ($("#postCTA").length && $(".post-content").length) {
+    const postCTA = $("#postCTA");
+    const h2 = $(".post-content h2");
+    if (h2.length && h2.eq(0).index()) {
+      // there's an h2 element inside post content
+      // and it's not the first child
+      postCTA.detach();
+      postCTA.insertBefore(h2.eq(0));
+    } else if ($(".post-content .excerpt").length) {
+      postCTA.detach();
+      postCTA.insertAfter($(".post-content .excerpt"));
+    }
+  }
+
+  // cta
   $(".post-cta").each(async function() {
     const keywords = $(this).attr("data-keywords");
     if (keywords) {
@@ -95,6 +131,11 @@ $(function() {
       }
     }
   });
+
+  $("#addCommentButton").on("click", function() {
+    $(".comments-widget__form-container").slideDown();
+    $(this).detach();
+  });
 });
 
 function copyText(text) {
@@ -104,16 +145,4 @@ function copyText(text) {
   el.select();
   document.execCommand("copy");
   document.body.removeChild(el);
-}
-
-function getScrollBarWidth() {
-  let $outer = $("<div>")
-      .css({ visibility: "hidden", width: 100, overflow: "scroll" })
-      .appendTo("body"),
-    widthWithScroll = $("<div>")
-      .css({ width: "100%" })
-      .appendTo($outer)
-      .outerWidth();
-  $outer.remove();
-  return 100 - widthWithScroll;
 }

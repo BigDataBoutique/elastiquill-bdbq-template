@@ -1,0 +1,76 @@
+<div class="filter-box">
+  <form
+    action="{{blogRoutePrefix}}/search"
+    method="GET"
+    class="filter-item-container"
+  >
+    <input
+      class="filter-item"
+      type="text"
+      name="q"
+      placeholder="Search"
+      aria-label="Search"
+      {{#if searchQuery}}
+        value="{{searchQuery}}"
+      {{/if}}
+    />
+  </form>
+  <div class="filter-item-container">
+    <button
+      type="button"
+      class="filter-item"
+      data-bs-container="body"
+      data-bs-toggle="popover"
+      data-bs-placement="bottom"
+      data-selector="#all-tags"
+    >
+      Topics
+    </button>
+    <div id="all-tags">
+      <div class="all-tags">
+        {{#if sidebarWidgetData.allTags}}
+          {{#each sidebarWidgetData.allTags}}
+            <a href="{{this.url}}">
+              {{this.key}}
+              <span>
+                ({{this.doc_count}})
+              </span>
+            </a>
+          {{/each}}
+        {{else}}
+          No tags
+        {{/if}}
+      </div>
+    </div>
+  </div>
+  <div class="filter-item-container">
+    <button
+      type="button"
+      class="filter-item"
+      data-bs-container="body"
+      data-bs-toggle="popover"
+      data-bs-placement="bottom"
+      data-selector="#all-series"
+    >
+      Series
+    </button>
+    <div id="all-series">
+      <div class="all-series">
+        {{#if sidebarWidgetData.allSeries}}
+          {{#each sidebarWidgetData.allSeries}}
+            <a href="{{this.url}}">
+              {{this.key}}
+              <span>
+                (
+                {{this.doc_count}}
+                )
+              </span>
+            </a>
+          {{/each}}
+        {{else}}
+          No series
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</div>

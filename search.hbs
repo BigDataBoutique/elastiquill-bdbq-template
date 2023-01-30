@@ -1,6 +1,6 @@
 <main class="content">
   <div class="container">
-    <div class="mb-5">
+    <div class="mt-3 mb-5">
       <h2>
         {{#if searchQuery}}
           <span class="text-muted">Showing search results for </span>"{{searchQuery}}"
@@ -8,10 +8,8 @@
           Showing all posts
         {{/if}}
       </h2>
-      <div class="mt-4">
-        {{> search-widget}}
-      </div>
     </div>
+    {{> filter-box}}
     <div class="row">
       {{#if posts.length}}
         {{#each posts}}

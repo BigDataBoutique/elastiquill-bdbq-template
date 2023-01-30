@@ -1,40 +1,97 @@
-<div id="comment-form" class="comments-widget__form">
-  <h2>Submit Comment</h2>
-  <form method="post" id="blogCommentForm">
-    {{#if comments.error}}
-    <div class="alert alert-danger">
-      {{comments.error}}
-    </div>
-    {{/if}}    
-    <div class="comments-widget__form-row">
-      <div class="form-group">
-        <input type="text" class="form-control" id="inputAuthor"
-          placeholder="Name*" name="author" value="{{comments.values.author}}" aria-label="Name (required)">
-      </div>
-      <div class="form-group">
-        <input type="email" class="form-control" id="inputEmail"
-        placeholder="Email*" name="email" value="{{comments.values.email}}" aria-label="Email (required)">
-      </div>
-    </div>
-    <div class="form-group">
-      <textarea class="form-control" id="textareaContent" name="content" placeholder="Your Comment"
-      rows="6">{{comments.values.content}}</textarea>
-    </div>
-    <div class="d-flex flex-column flex-md-row justify-content-between my-3">
-      <div class="form-group">
-        <div class="g-recaptcha" data-sitekey="{{recaptchaClientKey}}"></div>
-      </div>
-      <div class="text-right">
-        <button type="submit" class="btn submit-comment">Submit Comment</button>
-        <button style="display: none;" type="button" class="btn cancel-comment ml-2" onclick="onClickReply()">Cancel</button>
-      </div>
-    </div>
-    <input id="recipient-hidden-input" type="hidden" name='recipient_comment_id'>
-  </form>
+<div class="d-flex justify-content-end">
+  <button
+    type="button"
+    id="addCommentButton"
+    class="button-outline"
+    style="border-color:#B4B8DB"
+  >
+    Add Comment
+  </button>
 </div>
-
+<div class="comments-widget__form-container">
+  <div id="comment-form" class="comments-widget__form">
+    <h2>
+      Submit Comment
+    </h2>
+    <form method="post" id="blogCommentForm">
+      {{#if comments.error}}
+        <div class="alert alert-danger">
+          {{comments.error}}
+        </div>
+      {{/if}}
+      <div class="comments-widget__form-row">
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            name="author"
+            value="{{comments.values.author}}"
+            class="form-control"
+            placeholder="Name"
+            required
+          />
+          <label for="floatingInput">
+            Name
+          </label>
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            type="email"
+            name="email"
+            value="{{comments.values.email}}"
+            class="form-control"
+            placeholder="Email"
+            required
+          />
+          <label for="floatingInput">
+            Email
+          </label>
+        </div>
+        <div class="form-floating mb-3">
+          <textarea
+            type="email"
+            name="content"
+            class="form-control"
+            placeholder="Comment"
+            style="height: 100px"
+            required
+          ></textarea>
+          <label for="floatingInput">
+            Comment
+          </label>
+        </div>
+      </div>
+      <div class="d-flex flex-column flex-md-row justify-content-between">
+        <div class="mb-3">
+          <div class="g-recaptcha" data-sitekey="{{recaptchaClientKey}}"></div>
+        </div>
+        <div class="text-right">
+          <button type="submit" class="button-filled">
+            Submit Comment
+          </button>
+          <button
+            style="display: none;"
+            type="button"
+            class="cancel-comment button-outline ms-3"
+            onclick="onClickReply()"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+      <input
+        id="recipient-hidden-input"
+        type="hidden"
+        name="recipient_comment_id"
+      />
+    </form>
+  </div>
+</div>
 <script type="text/javascript">
-    window.COMMENTS_RECIPIENT_COMMENT_ID = '{{{comments.values.recipient_comment_id}}}';
-    window.COMMENTS_ERROR = '{{{comments.error}}}';
+  window.COMMENTS_RECIPIENT_COMMENT_ID = '
+  {{{comments.values.recipient_comment_id}}}
+  ';
+  window.COMMENTS_ERROR = '
+  {{{comments.error}}}
+  ';
 </script>
 <script src="/static/base/js/comments.js"></script>
