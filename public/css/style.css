@@ -258,6 +258,7 @@ header {
 .sticky-navbar {
   background-color: hsla(0, 0%, 100%, 0.8);
   transform: translateZ(0);
+  -webkit-backdrop-filter: saturate(180%) blur(5px);
   backdrop-filter: saturate(180%) blur(5px);
   box-shadow: inset 0 -1px 0 0 rgb(0 0 0 / 5%);
 }
