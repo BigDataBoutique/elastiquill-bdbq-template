@@ -617,9 +617,6 @@ footer {
   transition: 0.3s;
 }
 
-.fresh-post__social a:nth-child(2n + 1) {
-}
-
 .fresh-post__social a:hover {
   filter: none;
   opacity: 1;
