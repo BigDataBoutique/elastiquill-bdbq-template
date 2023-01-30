@@ -14,12 +14,22 @@
           action="{{contactFormPostUrl}}"
           method="post"
         >
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+            style="filter:invert(1)"
+          >
             <span aria-hidden="true" class="fa fa-times"></span>
           </button>
-          <h4>Subscribe to Monthly Newsletter</h4>
-          <p>Keep up-to-date with important changes in big data technologies; discover new features and tools for your business.</p>
-          <div class="form-group">
+          <h4>
+            Subscribe to Monthly Newsletter
+          </h4>
+          <p>
+            Keep up-to-date with important changes in big data technologies; discover new features and tools for your business.
+          </p>
+          <div class="mb-3">
             <input
               id="input-name"
               type="text"
@@ -31,7 +41,7 @@
               required
             />
           </div>
-          <div class="form-group">
+          <div class="mb-3">
             <input
               id="input-email"
               type="email"
@@ -43,7 +53,7 @@
               required
             />
           </div>
-          <div class="form-group privacy">
+          <div class="mb-3 privacy">
             <div class="form-check">
               <input
                 class="form-check-input"
@@ -54,16 +64,18 @@
               />
               <label class="form-check-label" for="contact-privacy">
                 I have read and agree to BigData Boutique's
-                <a href="https://bigdataboutique.com/privacy" target="_blank">Privacy Policy</a>
+                <a href="https://bigdataboutique.com/privacy" target="_blank">
+                  Privacy Policy
+                </a>
               </label>
               {{#if feedback.privacy_error}}
-              <div class="d-block invalid-feedback" style="color: #ffe7e9">
-                You must agree before submitting.
-              </div>
+                <div class="d-block invalid-feedback" style="color: #ffe7e9">
+                  You must agree before submitting.
+                </div>
               {{/if}}
             </div>
           </div>
-          <div class="form-group">
+          <div class="mb-3">
             <div class="form-check">
               <input
                 class="form-check-input"
@@ -85,12 +97,19 @@
             value="Newsletter subscription - {{post.title}}"
           />
           <div style="position: absolute; left: -5000px;" aria-hidden="true">
-            <input type="text" name="b_13b9659b659dcce482526ea2d_11a1b7987b" tabindex="-1" value="">
+            <input
+              type="text"
+              name="b_13b9659b659dcce482526ea2d_11a1b7987b"
+              tabindex="-1"
+              value=""
+            />
           </div>
-          <div class="form-group">
+          <div class="mb-3">
             <div class="g-recaptcha" data-sitekey={{recaptchaClientKey}}></div>
           </div>
-          <button type="submit" class="submit-button">Subscribe</button>
+          <button type="submit" class="submit-button">
+            Subscribe
+          </button>
         </form>
       </div>
     </div>
