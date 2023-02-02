@@ -4,6 +4,7 @@
     method="POST"
     id="contactForm"
     class="contact-form"
+    data-gtm="BlogContactForm"
   >
     <h3 class="contact-form__title">
       Contact Us
@@ -74,6 +75,13 @@
       value=""
     />
     <input name="subject" type="hidden" tabindex="-1" value="Blog Contact" />
+    <input
+      name="privacy"
+      type="checkbox"
+      tabindex="-1"
+      checked="checked"
+      hidden
+    />
     <div class="d-flex justify-content-center mb-3">
       <div class="g-recaptcha" data-sitekey="{{recaptchaClientKey}}"></div>
     </div>
@@ -85,7 +93,7 @@
     </div>
     <div class="form-row">
       <div class="form-group col-md-12">
-        <button class="button-filled" type="submit">
+        <button class="button-filled" type="submit" data-gtm="BlogContactForm">
           Send
         </button>
       </div>

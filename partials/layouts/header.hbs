@@ -1,11 +1,22 @@
-<noscript>
-  <iframe
-    src="https://www.googletagmanager.com/ns.html?id=GTM-PJDLG3H"
-    height="0"
-    width="0"
-    style="display:none;visibility:hidden"
-  ></iframe>
-</noscript>
+{{#if isLocalhost}}
+  <noscript>
+    <iframe
+      src="https://www.googletagmanager.com/ns.html?id=GTM-PJDLG3H&gtm_auth=o2QJCZI7FEhVA7NaPtCrSA&gtm_preview=env-67&gtm_cookies_win=x"
+      height="0"
+      width="0"
+      style="display:none;visibility:hidden"
+    ></iframe>
+  </noscript>
+{{else}}
+  <noscript>
+    <iframe
+      src="https://www.googletagmanager.com/ns.html?id=GTM-PJDLG3H"
+      height="0"
+      width="0"
+      style="display:none;visibility:hidden"
+    ></iframe>
+  </noscript>
+{{/if}}
 <header>
   <div class="navbar-container">
     <div class="container">
@@ -49,10 +60,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a
-                class="button-small hover-disabled-link"
-                href="https://bigdataboutique.com/contact"
-              >
+              <a class="button-small hover-disabled-link" href="/contact">
                 Let's Talk
               </a>
             </li>

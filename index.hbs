@@ -2,13 +2,7 @@
   {{#if (and posts.length (eq pageNum 1) (eq template "index"))}}
     {{> fresh-post (head posts) index="true"}}
   {{/if}}
-  <div class="home-cta">
-    <img src="/static/theme/img/bdbq-background.svg" alt="bigdata boutique" />
-    <div class="container">
-      {{> cta}}
-    </div>
-  </div>
-  <div class="container">
+  <div class="container mt-5">
     {{> filter-box}}
     <div class="row">
       {{#if posts.length}}
