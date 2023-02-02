@@ -334,22 +334,6 @@ footer {
   object-fit: contain;
 }
 
-.home-cta {
-  position: relative;
-  background: none;
-  overflow-y: visible;
-}
-
-.home-cta img {
-  pointer-events: none;
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: -1;
-  width: 600px;
-}
-
 .post-cta {
   margin: 48px 0;
 }
@@ -364,7 +348,6 @@ footer {
   line-height: 1.1;
   text-align: center;
   color: #262626;
-  max-width: 600px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -401,8 +384,8 @@ footer {
 .calendly-modal .close {
   position: absolute;
   z-index: 10;
-  top: 5px;
-  right: 5px;
+  top: 10px;
+  right: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -859,15 +842,13 @@ ol {
   font-size: inherit;
 }
 
-.post-content h1:has(a),
-.post-content h2:has(a),
-.post-content h3:has(a),
-.post-content h4:has(a),
-.post-content h5:has(a),
-.post-content h6:has(a) {
-  display: flex;
-  align-items: center;
-  gap: 15px;
+.post-content h1,
+.post-content h2,
+.post-content h3,
+.post-content h4,
+.post-content h5,
+.post-content h6 {
+  scroll-margin-top: 90px;
 }
 
 .post-content h1 a:has(i),
@@ -876,10 +857,21 @@ ol {
 .post-content h4 a:has(i),
 .post-content h5 a:has(i),
 .post-content h6 a:has(i) {
-  margin-top: 5px;
-  font-size: 16px;
+  position: relative;
+  margin: 5px 0 0 15px;
   opacity: 0;
   transition: 0.3s;
+}
+
+@media (hover: none) {
+  .post-content h1 a:has(i),
+  .post-content h2 a:has(i),
+  .post-content h3 a:has(i),
+  .post-content h4 a:has(i),
+  .post-content h5 a:has(i),
+  .post-content h6 a:has(i) {
+    opacity: 1;
+  }
 }
 
 .post-content h1:hover a:has(i),
@@ -889,6 +881,24 @@ ol {
 .post-content h5:hover a:has(i),
 .post-content h6:hover a:has(i) {
   opacity: 1;
+}
+
+.post-content h1 a i,
+.post-content h2 a i,
+.post-content h3 a i,
+.post-content h4 a i,
+.post-content h5 a i,
+.post-content h6 a i {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  display: block;
+  width: 20px;
+  height: 20px;
+  transform: translateY(-40%);
+  background-image: url("/static/theme/img/link.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .post-content a {
@@ -1177,6 +1187,10 @@ ol {
   color: var(--color-primary);
 }
 
+.tag-description {
+  font-size: 18px;
+}
+
 @media (min-width: 768px) {
   .navbar .navbar-brand {
     width: 223px;
@@ -1203,12 +1217,6 @@ ol {
 
   .fresh-post__social span {
     font-size: 20px;
-  }
-
-  .home-cta img {
-    top: 25%;
-    left: 50%;
-    transform: translateY(-10%);
   }
 
   .post-cta {
