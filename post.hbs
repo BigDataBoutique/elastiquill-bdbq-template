@@ -1,11 +1,11 @@
 <main class="content">
   {{> fresh-post post}}
-  <article class="container">
+  <div class="container">
     <div class="post-row">
-      <div class="post-row__content">
+      <article class="post-row__content">
         <div class="post-row__inner">
           <div class="post-content">
-            <p class="mb-3 excerpt">{{{post.excerpt}}}</p>
+            <blockquote cite="{{post.metadata.canonical_url}}" class="mb-3 excerpt">{{{post.excerpt}}}</blockquote>
             {{{post.content}}}
           </div>
           {{#if post.metadata.canonical_url}}
@@ -34,7 +34,7 @@
             {{/if}}
           </div>
         </div>
-      </div>
+      </article>
       <div class="post-row__sidebar">
         <div class="post-row__subscribe">
           <button type="button" class="button-filled" data-bs-toggle="modal" data-bs-target="#subscribeModal">Subscribe to Newsletter</button>
@@ -58,7 +58,7 @@
               </time>
               <span>{{this.title}}</span>
             </div>
-            <img src="{{#if this.metadata.header_image_url}}{{{this.metadata.header_image_url}}}{{else}}/static/base/img/post1.jpg{{/if}}" alt="illustration"/>
+            {{> imgix-image src=this.metadata.header_image_url lazyLoad=true}}
           </a>
           {{/each}}
         </div>
@@ -74,7 +74,7 @@
         {{/if}}
       </div>
     </div>
-  </article>
+  </div>
 </main>
 
 <div class="divider"></div>

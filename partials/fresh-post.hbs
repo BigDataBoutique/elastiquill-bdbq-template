@@ -1,13 +1,10 @@
-<article class="fresh-post">
+<div class="fresh-post">
   <div class="container">
     <div class="row">
       <div class="col-lg-5 order-lg-2">
         <div class="fresh-post__img">
           <a href="{{this.url}}">
-            <img
-              src="{{#if this.metadata.header_image_url}}{{#replace "https://bdbq-assets.storage.googleapis.com/" "https://bdbq.imgix.net/"}}{{this.metadata.header_image_url}}{{/replace}}?auto=format,w=500{{else}}/static/base/img/post1.jpg{{/if}}"
-              alt="illustration"
-            />
+            {{> imgix-image src=this.metadata.header_image_url alt=""}}
           </a>
         </div>
       </div>
@@ -51,7 +48,7 @@
             {{/each}}
           </div>
           {{#if index}}
-            <div class="fresh-post__excerpt">{{{this.excerpt}}}</div>
+            <blockquote cite="{{this.full_url}}" class="fresh-post__excerpt">{{{this.excerpt}}}</blockquote>
           {{else}}
             <div class="fresh-post__social mt-4 mt-md-0">
               <span>Share</span>
@@ -91,4 +88,4 @@
       </div>
     </div>
   </div>
-</article>
+</div>

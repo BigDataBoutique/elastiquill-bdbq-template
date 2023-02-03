@@ -464,6 +464,10 @@ footer {
   color: #262626;
 }
 
+.filter-box input.filter-item {
+  text-transform: none;
+}
+
 .filter-box .filter-item:focus {
   outline: none;
 }
@@ -840,7 +844,9 @@ footer {
 }
 
 .post-content .excerpt {
+  font-size: inherit;
   font-weight: 600;
+  line-height: inherit;
 }
 
 .post-content p,
