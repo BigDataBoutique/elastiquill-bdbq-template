@@ -1,11 +1,7 @@
 <div class="col-md-{{#if col}}{{col}}{{else}}4{{/if}} pb-5 d-flex">
   <div class="post-box card">
     <a href="{{this.url}}" class="post-box__img">
-      <img
-        class="lazy-load-img"
-        data-src="{{#if this.metadata.header_image_url}}{{#replace "https://bdbq-assets.storage.googleapis.com/" "https://bdbq.imgix.net/"}}{{this.metadata.header_image_url}}{{/replace}}?auto=format,w=500{{else}}/static/base/img/post1.jpg{{/if}}"
-        alt=""
-      />
+      {{> imgix-image src=this.metadata.header_image_url lazyLoad=true}}
     </a>
     <div class="post-box__content p-3">
       <div class="post-box__time">

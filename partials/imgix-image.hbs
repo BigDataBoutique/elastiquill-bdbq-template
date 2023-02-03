@@ -1,0 +1,12 @@
+{{#if lazyLoad}}
+<img
+  class="lazy-load-img"
+  data-src="{{#if src}}{{#replace "https://storage.googleapis.com/bdbq-assets/" "https://bdbq.imgix.net/"}}{{#replace "https://bdbq-assets.storage.googleapis.com/" "https://bdbq.imgix.net/"}}{{src}}{{/replace}}{{/replace}}?auto=format,w=500{{else}}/static/base/img/post1.jpg{{/if}}"
+  alt="{{alt}}"
+/>
+{{else}}
+<img
+  src="{{#if src}}{{#replace "https://storage.googleapis.com/bdbq-assets/" "https://bdbq.imgix.net/"}}{{#replace "https://bdbq-assets.storage.googleapis.com/" "https://bdbq.imgix.net/"}}{{src}}{{/replace}}{{/replace}}?auto=format,w=500{{else}}/static/base/img/post1.jpg{{/if}}"
+  alt="{{alt}}"
+/>
+{{/if}}
