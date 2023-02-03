@@ -24,7 +24,7 @@
       data-bs-placement="bottom"
       data-selector="#all-tags"
     >
-      Topics
+      <span>{{#if tag}}{{tag}}{{else}}Topics{{/if}}</span>
     </button>
     <div id="all-tags">
       <div class="all-tags">
@@ -52,7 +52,7 @@
       data-bs-placement="bottom"
       data-selector="#all-series"
     >
-      Series
+      <span>{{#if series}}{{series}}{{else}}Series{{/if}}</span>
     </button>
     <div id="all-series">
       <div class="all-series">
