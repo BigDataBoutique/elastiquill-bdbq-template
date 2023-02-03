@@ -455,6 +455,7 @@ footer {
   display: flex;
   align-items: center;
   height: 40px;
+  text-transform: capitalize;
   padding: 0 calc(15px * 2 + var(--icon-size)) 0 15px;
   background: #ffffff;
   border: 1px solid #dddcf5;
@@ -465,6 +466,12 @@ footer {
 
 .filter-box .filter-item:focus {
   outline: none;
+}
+
+.filter-box .filter-item span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .filter-box .all-tags,
@@ -1207,7 +1214,8 @@ ol {
   }
 
   .filter-box .filter-item-container {
-    flex: 1;
+    flex: 1 1 33.3%;
+    min-width: 0;
   }
 
   .fresh-post__time,
