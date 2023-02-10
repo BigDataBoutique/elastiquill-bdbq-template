@@ -3,15 +3,14 @@
     action="{{contactFormPostUrl}}"
     method="POST"
     id="contactForm"
-    class="contact-form"
+    class="contact-form post-cta"
     data-gtm="BlogContactForm"
+    data-keywords="{{#if metaKeywords}}{{toLowerCase metaKeywords}}{{else}}elasticsearch{{/if}}"
   >
     <h3 class="contact-form__title">
       Contact Us
     </h3>
-    <p class="contact-form__description">
-      Have a Query regarding Elasticsearch or OpenSearch? Ask us anything.
-    </p>
+    <p class="contact-form__description post-cta__text"></p>
     <div class="row g-3 mb-3">
       <div class="col-md-6">
         <div class="form-floating ms-lg-auto">

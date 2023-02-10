@@ -123,7 +123,7 @@ $(function() {
         try {
           const { text } = await response.json();
           $(this)
-            .find(".text")
+            .find(".post-cta__text")
             .html(text);
         } catch (err) {
           // noop

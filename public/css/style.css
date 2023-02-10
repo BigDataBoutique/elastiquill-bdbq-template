@@ -338,11 +338,11 @@ footer {
   margin: 48px 0;
 }
 
-.post-cta .text:not(:empty) {
+.post-cta__text:not(:empty) {
   margin-bottom: 40px;
 }
 
-.post-cta .text {
+.post-cta__text {
   font-weight: 400;
   font-size: 40px;
   line-height: 1.1;
@@ -352,12 +352,12 @@ footer {
   margin-right: auto;
 }
 
-.post-cta .text b {
+.post-cta__text b {
   font-weight: 400;
   color: var(--color-primary);
 }
 
-.post-cta .actions {
+.post-cta__actions {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
