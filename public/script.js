@@ -136,6 +136,10 @@ $(function() {
     $(".comments-widget__form-container").slideDown();
     $(this).detach();
   });
+
+  $("input[name='referrer']").each(function() {
+    $(this).val(document.referrer);
+  });
 });
 
 function copyText(text) {
