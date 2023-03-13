@@ -97,6 +97,17 @@ $(function() {
       }
     });
 
+  // post links
+  $(".post-content")
+    .find("p a")
+    .each(function() {
+      const href = $(this).attr("href");
+      if (!href.startsWith("https://blog.bigdataboutique.com")) {
+        $(this).attr("target", "_blank");
+        $(this).attr("rel", "noopener");
+      }
+    });
+
   // reposition cta inside post page
   if ($("#postCTA").length && $(".post-content").length) {
     const postCTA = $("#postCTA");

@@ -1,6 +1,6 @@
 <main class="content">
   {{#if (and posts.length (eq pageNum 1) (eq template "index"))}}
-    {{> fresh-post (head posts) index="true"}}
+    {{> fresh-post (head posts) index="true" blogUrl=blogUrl}}
   {{/if}}
   <div class="container mt-5">
     {{> filter-box}}
