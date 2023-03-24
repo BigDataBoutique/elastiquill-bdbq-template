@@ -104,7 +104,7 @@ $(function() {
       const href = $(this).attr("href");
       if (!href.startsWith("https://blog.bigdataboutique.com")) {
         $(this).attr("target", "_blank");
-        $(this).attr("rel", "noopener");
+        $(this).attr("rel", "noopener nofollow");
       }
     });
 
