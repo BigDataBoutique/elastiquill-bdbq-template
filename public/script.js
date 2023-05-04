@@ -151,6 +151,64 @@ $(function() {
   $("input[name='referrer']").each(function() {
     $(this).val(document.referrer);
   });
+
+  function lazyLoadRecaptcha() {
+    const captcha = document.querySelectorAll(".g-recaptcha");
+    if (!captcha.length) {
+      return;
+    }
+
+    if (window.IntersectionObserver) {
+      const io = new IntersectionObserver(function(entries) {
+        if (entries[0].isIntersecting && !$("#captchaScript").length) {
+          loadRecaptcha();
+          io.disconnect();
+        }
+      });
+      captcha.forEach(el => {
+        io.observe(el);
+      });
+    } else {
+      loadRecaptcha();
+    }
+
+    const loadRecaptcha = () => {
+      const captchaScript = document.createElement("script");
+      captchaScript.id = "captchaScript";
+      captchaScript.async = true;
+      captchaScript.src = "https://www.google.com/recaptcha/api.js";
+      document.body.appendChild(captchaScript);
+    };
+  }
+  lazyLoadRecaptcha();
+
+  function lazyLoadCalendly() {
+    $("#calendlyModal").on("show.bs.modal", function() {
+      if (!$("#calendlyScript").length) {
+        const calendlyScript = document.createElement("script");
+        calendlyScript.id = "calendlyScript";
+        calendlyScript.async = true;
+        calendlyScript.src =
+          "https://assets.calendly.com/assets/external/widget.js";
+        document.body.appendChild(calendlyScript);
+
+        const listener = function(e) {
+          if (
+            e.origin === "https://calendly.com" &&
+            e.data.event &&
+            e.data.event === "calendly.event_type_viewed"
+          ) {
+            $(this)
+              .find(".loader")
+              .hide();
+            window.removeEventListener("message", listener);
+          }
+        };
+        window.addEventListener("message", listener);
+      }
+    });
+  }
+  lazyLoadCalendly();
 });
 
 function copyText(text) {
