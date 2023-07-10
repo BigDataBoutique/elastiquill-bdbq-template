@@ -1,215 +1,345 @@
-$(function() {
+document.addEventListener("DOMContentLoaded", function() {
+  initStickNav();
+  initBsModalListener();
+  initBsPopover();
+  initFancyboxImages();
+  initSyntaxHighlighter();
+  initPostExternalLinks();
+  initPostCtaSection();
+  initCommentBox();
+  initFormReferrerInput();
+  initLazyLoadImage();
+  initLazyLoadRecaptcha();
+  initLazyLoadCalendly();
+});
+
+function initStickNav() {
   function stickyNav() {
-    if ($(window).scrollTop()) {
-      $(".navbar-container").addClass("sticky-navbar");
+    const navbarContainer = document.querySelector(".navbar-container");
+
+    if (window.scrollY > 0) {
+      navbarContainer.classList.add("sticky-navbar");
     } else {
-      $(".navbar-container").removeClass("sticky-navbar");
+      navbarContainer.classList.remove("sticky-navbar");
     }
   }
 
   stickyNav();
-  $(window).on("resize", stickyNav);
-  $(window).scroll(stickyNav);
+  window.addEventListener("resize", stickyNav);
+  window.addEventListener("scroll", stickyNav);
+}
 
+function initBsModalListener() {
   function getScrollBarWidth() {
-    let $outer = $("<div>")
-        .css({ visibility: "hidden", width: 100, overflow: "scroll" })
-        .appendTo("body"),
-      widthWithScroll = $("<div>")
-        .css({ width: "100%" })
-        .appendTo($outer)
-        .outerWidth();
-    $outer.remove();
+    const outer = document.createElement("div");
+    outer.style.visibility = "hidden";
+    outer.style.width = "100px";
+    outer.style.overflow = "scroll";
+    document.body.appendChild(outer);
+
+    const inner = document.createElement("div");
+    inner.style.width = "100%";
+    outer.appendChild(inner);
+    const widthWithScroll = inner.offsetWidth;
+
+    document.body.removeChild(outer);
+
     return 100 - widthWithScroll;
   }
 
   // bootstrap modal
-  $(".modal").on("show.bs.modal", function() {
-    $("header .navbar-container").css("right", getScrollBarWidth());
-  });
-  $(".modal").on("hidden.bs.modal", function() {
-    $("header .navbar-container").css("right", 0);
-  });
+  const modals = document.querySelectorAll(".modal");
 
-  // bootstrap popover
-  $("[data-bs-toggle=popover]").each(function() {
-    const content = $($(this).attr("data-selector")).html();
-    $(this).popover({
+  modals.forEach(function(modal) {
+    modal.addEventListener("show.bs.modal", function() {
+      const navbarContainer = document.querySelector(
+        "header .navbar-container"
+      );
+      navbarContainer.style.right = getScrollBarWidth() + "px";
+    });
+
+    modal.addEventListener("hidden.bs.modal", function() {
+      const navbarContainer = document.querySelector(
+        "header .navbar-container"
+      );
+      navbarContainer.style.right = 0;
+    });
+  });
+}
+
+function initBsPopover() {
+  const popoverElements = document.querySelectorAll("[data-bs-toggle=popover]");
+
+  popoverElements.forEach(function(popoverElement) {
+    const content = document.querySelector(
+      popoverElement.getAttribute("data-selector")
+    ).innerHTML;
+
+    popoverElement.addEventListener("shown.bs.popover", function() {
+      const navbarContainer = document.querySelector(
+        "header .navbar-container"
+      );
+      navbarContainer.style.right = getScrollBarWidth() + "px";
+    });
+
+    popoverElement.addEventListener("hidden.bs.popover", function() {
+      const navbarContainer = document.querySelector(
+        "header .navbar-container"
+      );
+      navbarContainer.style.right = "0";
+    });
+
+    new bootstrap.Popover(popoverElement, {
       sanitize: false,
       html: true,
-      content,
+      content: content,
       customClass: "bdbq-popover",
     });
   });
+}
 
-  function initLazyLoadImage() {
-    const images = $(".lazy-load-img");
-    if (window.IntersectionObserver) {
-      images.each(function() {
-        const image = this;
-        const io = new IntersectionObserver(function(entries) {
-          if (entries[0].isIntersecting) {
-            if (!$(image).attr("src")) {
-              $(image).attr("src", $(image).data("src"));
-            }
-          }
-        });
-        io.observe(this);
+function initFancyboxImages() {
+  const postImages = document.querySelectorAll(".post-content img");
+
+  postImages.forEach(function(image) {
+    const href = image.getAttribute("src");
+    const anchorElement = document.createElement("a");
+    anchorElement.setAttribute("data-fancybox", "gallery");
+    anchorElement.setAttribute("href", href);
+
+    const imgElement = document.createElement("img");
+    imgElement.setAttribute("src", href);
+
+    anchorElement.appendChild(imgElement);
+
+    image.parentNode.replaceChild(anchorElement, image);
+  });
+
+  Fancybox.bind("[data-fancybox]", {
+    // Your custom options
+  });
+}
+
+function initSyntaxHighlighter() {
+  const codeSnippets = document.querySelectorAll(".post-content pre code");
+
+  codeSnippets.forEach(function(code) {
+    let classes = code.getAttribute("class");
+
+    if (classes) {
+      classes = classes.split(" ");
+      const lang = classes.find(function(item) {
+        return item.startsWith("language-");
       });
-    } else {
-      images.each(function() {
-        $(this).attr("src", $(this).data("src"));
-      });
+
+      if (lang) {
+        code.parentNode.setAttribute(
+          "data-language",
+          lang.replace("language-", "")
+        );
+      }
+
+      hljs.highlightElement(code);
     }
-  }
-  initLazyLoadImage();
+  });
+}
 
-  // post image fancybox
-  $(".post-content")
-    .find("img")
-    .each(function() {
-      var href = $(this).attr("src");
-      $(this).replaceWith(
-        $(
-          '<a data-fancybox="gallery" href="' +
-            href +
-            '"><img src="' +
-            href +
-            '"></a>'
-        )
-      );
-    });
+function initPostExternalLinks() {
+  const postLinks = document.querySelectorAll(".post-content p a");
 
-  // post code snippet highlighting
-  $(".post-content")
-    .find("pre code")
-    .each(function() {
-      let classes = $(this).attr("class");
-      if (classes) {
-        classes = classes.split(" ");
-        const lang = classes.find(item => item.startsWith("language-"));
-        if (lang) {
-          $(this)
-            .closest("pre")
-            .attr("data-language", lang.replace("language-", ""));
-        }
-        hljs.highlightBlock($(this)[0]);
-      }
-    });
+  postLinks.forEach(function(link) {
+    const href = link.getAttribute("href");
+    if (!href.startsWith("https://blog.bigdataboutique.com")) {
+      link.setAttribute("target", "_blank");
+      link.setAttribute("rel", "noopener nofollow");
+    }
+  });
+}
 
-  // post links
-  $(".post-content")
-    .find("p a")
-    .each(function() {
-      const href = $(this).attr("href");
-      if (!href.startsWith("https://blog.bigdataboutique.com")) {
-        $(this).attr("target", "_blank");
-        $(this).attr("rel", "noopener nofollow");
-      }
-    });
+function initPostCtaSection() {
+  const postCTA = document.getElementById("postCTA");
+  const postContent = document.querySelector(".post-content");
 
   // reposition cta inside post page
-  if ($("#postCTA").length && $(".post-content").length) {
-    const postCTA = $("#postCTA");
-    const h2 = $(".post-content h2");
-    if (h2.length && h2.eq(0).index()) {
-      // there's an h2 element inside post content
-      // and it's not the first child
-      postCTA.detach();
-      postCTA.insertBefore(h2.eq(0));
-    } else if ($(".post-content .excerpt").length) {
-      postCTA.detach();
-      postCTA.insertAfter($(".post-content .excerpt"));
+  // if ($("#postCTA").length && $(".post-content").length) {
+  //   const postCTA = $("#postCTA");
+  //   const h2 = $(".post-content h2");
+  //   if (h2.length && h2.eq(0).index()) {
+  //     // there's an h2 element inside post content
+  //     // and it's not the first child
+  //     postCTA.detach();
+  //     postCTA.insertBefore(h2.eq(0));
+  //   } else if ($(".post-content .excerpt").length) {
+  //     postCTA.detach();
+  //     postCTA.insertAfter($(".post-content .excerpt"));
+  //   }
+  // }
+
+  if (postCTA && postContent) {
+    const h2Elements = postContent.querySelectorAll("h2");
+
+    if (h2Elements.length && h2Elements[0].previousElementSibling) {
+      postContent.insertBefore(postCTA, h2Elements[0]);
+    } else if (postContent.querySelector(".excerpt")) {
+      postContent.insertBefore(
+        postCTA,
+        postContent.querySelector(".excerpt").nextSibling
+      );
     }
   }
 
-  // cta
-  $(".post-cta").each(async function() {
-    const keywords = $(this).attr("data-keywords");
+  const postCTAs = document.querySelectorAll(".post-cta");
+
+  postCTAs.forEach(async function(cta) {
+    const keywords = cta.getAttribute("data-keywords");
+
     if (keywords) {
       const response = await fetch(
         `https://bigdataboutique.com/b/ctas/${keywords.toLowerCase()}`
       );
+
       if (response.ok) {
         try {
           const { text } = await response.json();
-          $(this)
-            .find(".post-cta__text")
-            .html(text);
+          cta.querySelector(".post-cta__text").innerHTML = text;
         } catch (err) {
           // noop
         }
       }
     }
   });
+}
 
-  $("#addCommentButton").on("click", function() {
-    $(".comments-widget__form-container").slideDown();
-    $(this).detach();
-  });
+function initCommentBox() {
+  const addCommentButton = document.getElementById("addCommentButton");
 
-  $("input[name='referrer']").each(function() {
-    $(this).val(document.referrer);
-  });
-
-  function lazyLoadRecaptcha() {
-    const captcha = document.querySelectorAll(".g-recaptcha");
-    if (!captcha.length) {
-      return;
-    }
-
-    if (window.IntersectionObserver) {
-      const io = new IntersectionObserver(function(entries) {
-        if (entries[0].isIntersecting && !$("#captchaScript").length) {
-          loadRecaptcha();
-          io.disconnect();
-        }
-      });
-      captcha.forEach(el => {
-        io.observe(el);
-      });
-    } else {
-      loadRecaptcha();
-    }
-
-    const loadRecaptcha = () => {
-      const captchaScript = document.createElement("script");
-      captchaScript.id = "captchaScript";
-      captchaScript.async = true;
-      captchaScript.src = "https://www.google.com/recaptcha/api.js";
-      document.body.appendChild(captchaScript);
-    };
-  }
-  lazyLoadRecaptcha();
-
-  function lazyLoadCalendly() {
-    $("#calendlyModal").on("show.bs.modal", function() {
-      if (!$("#calendlyScript").length) {
-        const calendlyScript = document.createElement("script");
-        calendlyScript.id = "calendlyScript";
-        calendlyScript.async = true;
-        calendlyScript.src =
-          "https://assets.calendly.com/assets/external/widget.js";
-        document.body.appendChild(calendlyScript);
-
-        const listener = function(e) {
-          if (
-            e.origin === "https://calendly.com" &&
-            e.data.event &&
-            e.data.event === "calendly.event_type_viewed"
-          ) {
-            $(this)
-              .find(".loader")
-              .hide();
-            window.removeEventListener("message", listener);
-          }
-        };
-        window.addEventListener("message", listener);
-      }
+  if (addCommentButton) {
+    addCommentButton.addEventListener("click", function() {
+      const formContainer = document.querySelector(
+        ".comments-widget__form-container"
+      );
+      formContainer.style.display = "block";
+      addCommentButton.parentNode.removeChild(addCommentButton);
     });
   }
-  lazyLoadCalendly();
-});
+}
+
+function initFormReferrerInput() {
+  const referrerInputs = document.querySelectorAll("input[name='referrer']");
+
+  referrerInputs.forEach(function(input) {
+    input.value = document.referrer;
+  });
+}
+
+function initLazyLoadImage() {
+  const images = document.querySelectorAll(".lazy-load-img");
+
+  if ("IntersectionObserver" in window) {
+    const handleIntersection = function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          if (!entry.target.getAttribute("src")) {
+            entry.target.setAttribute(
+              "src",
+              entry.target.getAttribute("data-src")
+            );
+          }
+          observer.unobserve(entry.target);
+        }
+      });
+    };
+
+    const options = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0,
+    };
+
+    const observer = new IntersectionObserver(handleIntersection, options);
+
+    images.forEach(function(image) {
+      observer.observe(image);
+    });
+  } else {
+    images.forEach(function(image) {
+      image.setAttribute("src", image.getAttribute("data-src"));
+    });
+  }
+}
+
+function initLazyLoadRecaptcha() {
+  const captchaElements = document.querySelectorAll(".g-recaptcha");
+
+  if (!captchaElements.length) {
+    return;
+  }
+
+  const handleIntersection = function(entries, observer) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting && !document.getElementById("captchaScript")) {
+        loadRecaptcha();
+        observer.disconnect();
+      }
+    });
+  };
+
+  const options = {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0,
+  };
+
+  const observer = new IntersectionObserver(handleIntersection, options);
+
+  captchaElements.forEach(function(captchaElement) {
+    observer.observe(captchaElement);
+  });
+
+  const loadRecaptcha = function() {
+    const captchaScript = document.createElement("script");
+    captchaScript.id = "captchaScript";
+    captchaScript.async = true;
+    captchaScript.src = "https://www.google.com/recaptcha/api.js";
+    document.body.appendChild(captchaScript);
+  };
+}
+
+function initLazyLoadCalendly() {
+  const calendlyModal = document.getElementById("calendlyModal");
+
+  if (!calendlyModal) {
+    return;
+  }
+
+  calendlyModal.addEventListener("show.bs.modal", function() {
+    if (!document.getElementById("calendlyScript")) {
+      const calendlyScript = document.createElement("script");
+      calendlyScript.id = "calendlyScript";
+      calendlyScript.async = true;
+      calendlyScript.src =
+        "https://assets.calendly.com/assets/external/widget.js";
+      document.body.appendChild(calendlyScript);
+
+      const listener = function(event) {
+        if (
+          event.origin === "https://calendly.com" &&
+          event.data &&
+          event.data.event &&
+          event.data.event === "calendly.event_type_viewed"
+        ) {
+          const loader = calendlyModal.querySelector(".loader");
+          if (loader) {
+            loader.style.display = "none";
+          }
+          window.removeEventListener("message", listener);
+        }
+      };
+
+      window.addEventListener("message", listener);
+    }
+  });
+}
 
 function copyText(text) {
   const el = document.createElement("textarea");
