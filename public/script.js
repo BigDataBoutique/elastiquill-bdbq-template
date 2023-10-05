@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function() {
   initPostExternalLinks();
   initPostCtaSection();
   initCommentBox();
-  initFormReferrerInput();
+  initFormSubmission();
   initLazyLoadImage();
   initLazyLoadRecaptcha();
   initLazyLoadCalendly();
@@ -160,21 +160,6 @@ function initPostCtaSection() {
   const postCTA = document.getElementById("postCTA");
   const postContent = document.querySelector(".post-content");
 
-  // reposition cta inside post page
-  // if ($("#postCTA").length && $(".post-content").length) {
-  //   const postCTA = $("#postCTA");
-  //   const h2 = $(".post-content h2");
-  //   if (h2.length && h2.eq(0).index()) {
-  //     // there's an h2 element inside post content
-  //     // and it's not the first child
-  //     postCTA.detach();
-  //     postCTA.insertBefore(h2.eq(0));
-  //   } else if ($(".post-content .excerpt").length) {
-  //     postCTA.detach();
-  //     postCTA.insertAfter($(".post-content .excerpt"));
-  //   }
-  // }
-
   if (postCTA && postContent) {
     const h2Elements = postContent.querySelectorAll("h2");
 
@@ -224,12 +209,44 @@ function initCommentBox() {
   }
 }
 
-function initFormReferrerInput() {
-  const referrerInputs = document.querySelectorAll("input[name='referrer']");
+function initFormSubmission() {
+  document
+    .querySelectorAll("#subscribeForm, #contactForm")
+    .forEach(function(form) {
+      form.addEventListener("submit", async function(e) {
+        e.preventDefault();
+        form.classList.add("loading");
+        const response = await fetch(form.getAttribute("action"), {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            Accept: "application/json",
+          },
+          body: new URLSearchParams(new FormData(form)),
+        });
 
-  referrerInputs.forEach(function(input) {
-    input.value = document.referrer;
-  });
+        form.classList.remove("loading");
+        if (response.ok) {
+          form.reset();
+          const formToast = new bootstrap.Toast(
+            document.querySelector(".success-toast")
+          );
+          formToast && formToast.show();
+
+          const modalContainer = form.closest(".modal");
+          if (modalContainer) {
+            bootstrap.Modal.getOrCreateInstance(
+              document.getElementById(modalContainer.getAttribute("id"))
+            ).hide();
+          }
+        } else {
+          const formToast = new bootstrap.Toast(
+            document.querySelector(".error-toast")
+          );
+          formToast && formToast.show();
+        }
+      });
+    });
 }
 
 function initLazyLoadImage() {

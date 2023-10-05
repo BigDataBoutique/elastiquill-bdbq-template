@@ -11,7 +11,7 @@
         <form
           id="subscribeForm"
           class="subscribe-form needs-validation"
-          action="{{contactFormPostUrl}}"
+          action="/api/blog/subscribe"
           method="post"
         >
           <button
@@ -31,14 +31,25 @@
           </p>
           <div class="mb-3">
             <input
-              id="input-name"
+              id="input-first-name"
               type="text"
               class="form-control"
-              name="name"
-              placeholder="Name*"
+              name="firstname"
+              placeholder="First Name"
               value=""
-              aria-label="Name (required)"
+              aria-label="First Name (required)"
               required
+            />
+          </div>
+          <div class="mb-3">
+            <input
+              id="input-last-name"
+              type="text"
+              class="form-control"
+              name="lastname"
+              placeholder="Last Name"
+              value=""
+              aria-label="Last Name"
             />
           </div>
           <div class="mb-3">
@@ -47,7 +58,7 @@
               type="email"
               class="form-control"
               name="email"
-              placeholder="Email*"
+              placeholder="Email"
               value=""
               aria-label="Email (required)"
               required
@@ -97,22 +108,16 @@
             value=""
           />
           <input
-            id="input-subject"
-            name="subject"
+            name="post"
             type="hidden"
+            tabindex="-1"
             value="{{post.title}}"
           />
           <input
-            name="source"
+            name="tags"
             type="hidden"
             tabindex="-1"
-            value="Blog - Subscribe Form"
-          />
-          <input
-            name="referrer"
-            type="hidden"
-            tabindex="-1"
-            value=""
+            value="{{#each post.tags}}{{this.key}}{{#unless @last}};{{/unless}}{{/each}}"
           />
           <div class="mb-3">
             <div class="g-recaptcha" data-sitekey={{recaptchaClientKey}}></div>
@@ -120,6 +125,24 @@
           <button type="submit" class="submit-button">
             Subscribe
           </button>
+          <div class="toast-container position-fixed bottom-0 end-0 p-3">
+            <div class="success-toast toast align-items-center text-bg-success text-start border-0" role="alert" aria-live="assertive" aria-atomic="true">
+              <div class="d-flex">
+                <div class="toast-body" style="font-size:18px">
+                  Thanks for subscribing to our newsletter!
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="toast-container position-fixed bottom-0 end-0 p-3">
+            <div class="error-toast toast align-items-center text-bg-danger text-start border-0" role="alert" aria-live="assertive" aria-atomic="true">
+              <div class="d-flex">
+                <div class="toast-body" style="font-size:18px">
+                  Failed to process your submission.<br/>Please try again!
+                </div>
+              </div>
+            </div>
+          </div>
         </form>
       </div>
     </div>

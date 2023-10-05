@@ -1,6 +1,6 @@
 <div class="container">
   <form
-    action="{{contactFormPostUrl}}"
+    action="/api/blog/contact"
     method="POST"
     id="contactForm"
     class="contact-form post-cta"
@@ -73,24 +73,20 @@
       tabindex="-1"
       value=""
     />
-    <input
-      name="subject"
-      type="hidden"
-      tabindex="-1"
-      value="{{subject}}"
-    />
-    <input
-      name="source"
-      type="hidden"
-      tabindex="-1"
-      value="Blog - Contact Form"
-    />
-    <input
-      name="referrer"
-      type="hidden"
-      tabindex="-1"
-      value=""
-    />
+    {{#if post}}
+      <input
+        name="post"
+        type="hidden"
+        tabindex="-1"
+        value="{{post.title}}"
+      />
+      <input
+        name="tags"
+        type="hidden"
+        tabindex="-1"
+        value="{{#each post.tags}}{{this.key}}{{#unless @last}};{{/unless}}{{/each}}"
+      />
+    {{/if}}
     <input
       name="privacy"
       type="checkbox"
@@ -112,6 +108,24 @@
         <button class="button-filled" type="submit" data-gtm="BlogContactForm">
           Send
         </button>
+      </div>
+    </div>
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+      <div class="success-toast toast align-items-center text-bg-success text-start border-0" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+          <div class="toast-body" style="font-size:18px">
+            Your submission has been sent!
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+      <div class="error-toast toast align-items-center text-bg-danger text-start border-0" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+          <div class="toast-body" style="font-size:18px">
+            Failed to process your submission.<br/>Please try again!
+          </div>
+        </div>
       </div>
     </div>
   </form>
