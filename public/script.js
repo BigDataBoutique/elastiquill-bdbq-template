@@ -164,7 +164,7 @@ function initPostCtaSection() {
     const h2Elements = postContent.querySelectorAll("h2");
 
     if (h2Elements.length && h2Elements[0].previousElementSibling) {
-      postContent.insertBefore(postCTA, h2Elements[0]);
+      h2Elements[0].parentNode.insertBefore(postCTA, h2Elements[0]);
     } else if (postContent.querySelector(".excerpt")) {
       postContent.insertBefore(
         postCTA,
