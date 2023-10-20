@@ -17,10 +17,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="robots" content="noindex, follow">
 {{/if}}
 
-<title>{{#if title}}{{title}}{{else}}{{blogDescription}}{{/if}} - {{blogTitle}}</title>
+<title>{{#if title}}{{title}} - {{/if}}{{blogTitle}}</title>
 
 {{#if description}}
     <meta name="description" content="{{description}}">
+{{else}}
+    <meta name="description" content="{{blogDescription}}">
 {{/if}}
 {{#if metaKeywords}}
     <meta name="keywords" content="{{metaKeywords}}">
