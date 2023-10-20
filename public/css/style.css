@@ -1055,6 +1055,7 @@ ol {
 .contact-form {
   margin: 48px 0;
   text-align: center;
+  overflow: hidden;
 }
 
 .contact-form__title {
@@ -1064,6 +1065,13 @@ ol {
 .contact-form__privacy {
   color: #bbbcbf;
   margin-bottom: 24px;
+}
+
+.contact-form input[name="b_13b9659b659dcce482526ea2d_11a1b7987b"] {
+  position: absolute;
+  left: -5000px;
+  top: -5000px;
+  opacity: 0;
 }
 
 .comments-widget__container {
