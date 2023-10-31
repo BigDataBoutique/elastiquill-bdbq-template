@@ -167,35 +167,36 @@
     if (postCTA && postContent) {
       const h2Elements = postContent.querySelectorAll("h2");
 
-    if (h2Elements.length && h2Elements[0].previousElementSibling) {
-      h2Elements[0].parentNode.insertBefore(postCTA, h2Elements[0]);
-    } else if (postContent.querySelector(".excerpt")) {
-      postContent.insertBefore(
-        postCTA,
-        postContent.querySelector(".excerpt").nextSibling
-      );
-    }
-
-    const postCTAs = document.querySelectorAll(".post-cta");
-
-    postCTAs.forEach(async function (cta) {
-      const keywords = cta.getAttribute("data-keywords");
-
-      if (keywords) {
-        const response = await fetch(
-          `https://bigdataboutique.com/b/ctas/${keywords.toLowerCase()}`,
+      if (h2Elements.length && h2Elements[0].previousElementSibling) {
+        h2Elements[0].parentNode.insertBefore(postCTA, h2Elements[0]);
+      } else if (postContent.querySelector(".excerpt")) {
+        postContent.insertBefore(
+          postCTA,
+          postContent.querySelector(".excerpt").nextSibling,
         );
+      }
 
-        if (response.ok) {
-          try {
-            const { text } = await response.json();
-            cta.querySelector(".post-cta__text").innerHTML = text;
-          } catch (err) {
-            // noop
+      const postCTAs = document.querySelectorAll(".post-cta");
+
+      postCTAs.forEach(async function (cta) {
+        const keywords = cta.getAttribute("data-keywords");
+
+        if (keywords) {
+          const response = await fetch(
+            `https://bigdataboutique.com/b/ctas/${keywords.toLowerCase()}`,
+          );
+
+          if (response.ok) {
+            try {
+              const { text } = await response.json();
+              cta.querySelector(".post-cta__text").innerHTML = text;
+            } catch (err) {
+              // noop
+            }
           }
         }
-      }
-    });
+      });
+    }
   }
 
   function initCommentBox() {
