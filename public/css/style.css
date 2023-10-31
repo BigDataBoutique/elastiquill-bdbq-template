@@ -1,6 +1,7 @@
 :root {
   --color-primary: #f09132;
   --color-secondary: #5a63b0;
+  --container-padding: 15px;
 }
 
 body {
@@ -40,6 +41,12 @@ h6 {
 
 main.content {
   overflow-x: hidden;
+}
+
+.container {
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+  max-width: 1200px;
 }
 
 .form-control {
@@ -208,7 +215,7 @@ header {
 .navbar .navbar-brand .blog-text {
   position: absolute;
   right: -32px;
-  bottom: -1px;
+  bottom: 1px;
   font-size: 12px;
   font-weight: bold;
   line-height: 1;
@@ -296,6 +303,7 @@ header {
   padding: 16px 24px;
   border-radius: 9999px;
   font-size: 18px;
+  line-height: 1;
   text-decoration: none;
   border: 1px solid var(--color-secondary);
   transition: 0.1s;
@@ -1386,16 +1394,21 @@ ol {
 }
 
 @media (min-width: 768px) {
+  :root {
+    --container-padding: 30px;
+  }
+
   .navbar .navbar-brand {
     height: 60px;
   }
 
   .navbar .navbar-brand img {
     width: 206px;
+    margin-bottom: 2px;
   }
 
   .navbar .navbar-brand .blog-text {
-    bottom: 6px;
+    bottom: 8px;
   }
 
   .navbar .navbar-toggler {
