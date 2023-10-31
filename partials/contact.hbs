@@ -7,63 +7,57 @@
     data-gtm="BlogContactForm"
     data-keywords="{{#if metaKeywords}}{{toLowerCase metaKeywords}}{{else}}elasticsearch{{/if}}"
   >
-    <h3 class="contact-form__title">
-      Contact Us
-    </h3>
+    <h3 class="contact-form__title">Contact Us</h3>
     <p class="contact-form__description post-cta__text"></p>
     <div class="row g-3 mb-3">
       <div class="col-md-6">
         <div class="form-floating ms-lg-auto">
           <input
+            id="name"
             type="text"
             name="name"
             class="form-control"
             placeholder="Your Full Name"
             required
           />
-          <label for="floatingInput">
-            Your Full Name
-          </label>
+          <label for="name"> Your Full Name </label>
         </div>
       </div>
       <div class="col-md-6">
         <div class="form-floating">
           <input
+            id="email"
             type="email"
             name="email"
             class="form-control"
             placeholder="Email"
             required
           />
-          <label for="floatingInput">
-            Email
-          </label>
+          <label for="email"> Email </label>
         </div>
       </div>
       <div class="col-md-6">
         <div class="form-floating ms-lg-auto">
           <input
+            id="phone"
             type="tel"
             name="phone"
             class="form-control"
             placeholder="Phone"
           />
-          <label for="floatingInput">
-            Phone
-          </label>
+          <label for="phone"> Phone </label>
         </div>
       </div>
       <div class="col-md-6">
         <div class="form-floating">
           <input
+            id="company"
             type="text"
             name="company"
             class="form-control"
             placeholder="Company"
           />
-          <label for="floatingInput">
-            Company
-          </label>
+          <label for="company"> Company </label>
         </div>
       </div>
     </div>
@@ -74,18 +68,15 @@
       value=""
     />
     {{#if post}}
-      <input
-        name="post"
-        type="hidden"
-        tabindex="-1"
-        value="{{post.title}}"
-      />
-      <input
-        name="tags"
-        type="hidden"
-        tabindex="-1"
-        value="{{#each post.tags}}{{this.key}}{{#unless @last}};{{/unless}}{{/each}}"
-      />
+    <input name="post" type="hidden" tabindex="-1" value="{{ post.title }}" />
+    <input
+      name="tags"
+      type="hidden"
+      tabindex="-1"
+      value="{{#each post.tags}}{{
+        this.key
+      }}{{#unless @last}};{{/unless}}{{/each}}"
+    />
     {{/if}}
     <input
       name="privacy"
@@ -95,7 +86,7 @@
       hidden
     />
     <div class="d-flex justify-content-center mb-3">
-      <div class="g-recaptcha" data-sitekey="{{recaptchaClientKey}}"></div>
+      <div class="g-recaptcha" data-sitekey="{{ recaptchaClientKey }}"></div>
     </div>
     <div class="contact-form__privacy">
       By clicking the button below you’re agreeing to our
@@ -111,19 +102,29 @@
       </div>
     </div>
     <div class="toast-container position-fixed bottom-0 end-0 p-3">
-      <div class="success-toast toast align-items-center text-bg-success text-start border-0" role="alert" aria-live="assertive" aria-atomic="true">
+      <div
+        class="success-toast toast align-items-center text-bg-success text-start border-0"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+      >
         <div class="d-flex">
-          <div class="toast-body" style="font-size:18px">
+          <div class="toast-body" style="font-size: 18px">
             Your submission has been sent!
           </div>
         </div>
       </div>
     </div>
     <div class="toast-container position-fixed bottom-0 end-0 p-3">
-      <div class="error-toast toast align-items-center text-bg-danger text-start border-0" role="alert" aria-live="assertive" aria-atomic="true">
+      <div
+        class="error-toast toast align-items-center text-bg-danger text-start border-0"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+      >
         <div class="d-flex">
-          <div class="toast-body" style="font-size:18px">
-            Failed to process your submission.<br/>Please try again!
+          <div class="toast-body" style="font-size: 18px">
+            Failed to process your submission.<br />Please try again!
           </div>
         </div>
       </div>
