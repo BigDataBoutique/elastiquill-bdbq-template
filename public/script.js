@@ -231,7 +231,17 @@
 
           form.classList.remove("loading");
           if (response.ok) {
+            window.dataLayer?.push({
+              event:
+                form.id === "#subscribeForm"
+                  ? "blog_subscribe"
+                  : "blog_contact",
+            });
             form.reset();
+            form.querySelectorAll("input.is-invalid").forEach((el) => {
+              el.classList.remove("is-invalid");
+            });
+
             const formToast = new bootstrap.Toast(
               document.querySelector(".success-toast"),
             );
@@ -244,6 +254,14 @@
               ).hide();
             }
           } else {
+            try {
+              const data = await response.json();
+              Object.keys(data.errors).forEach((key) => {
+                form
+                  .querySelector(`input[name="${key.replace("_error", "")}"]`)
+                  ?.classList.add("is-invalid");
+              });
+            } catch {}
             const formToast = new bootstrap.Toast(
               document.querySelector(".error-toast"),
             );
