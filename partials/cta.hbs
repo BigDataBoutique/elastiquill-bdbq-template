@@ -1,24 +1,27 @@
-<div class="post-cta" data-keywords="{{#if metaKeywords}}{{toLowerCase metaKeywords}}{{else}}elasticsearch{{/if}}">
+<div
+  class="post-cta"
+  data-keywords="{{#if metaKeywords}}{{toLowerCase metaKeywords}}{{else}}elasticsearch{{/if}}"
+>
   <div class="post-cta__text"></div>
   <div class="post-cta__actions">
-    <button
-      class="button-filled"
-      type="button"
-      data-bs-toggle="modal"
-      data-bs-target="#calendlyModal"
-      style="min-width:218px"
-      data-gtm="BlogCalendlyButton"
-    >
-      Schedule a Meeting
-    </button>
     <a
-      class="button-outline"
+      class="button-filled"
       href="#contactForm"
-      style="min-width:218px"
+      style="min-width: 218px"
       data-gtm="BlogContactButton"
     >
       Contact Us
     </a>
+    <button
+      class="button-outline"
+      type="button"
+      data-bs-toggle="modal"
+      data-bs-target="#calendlyModal"
+      style="min-width: 218px"
+      data-gtm="BlogCalendlyButton"
+    >
+      Schedule a Meeting
+    </button>
   </div>
   {{> modals/calendly-modal}}
 </div>
