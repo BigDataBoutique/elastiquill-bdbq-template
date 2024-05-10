@@ -4,9 +4,11 @@
 >
   <div class="post-cta__text"></div>
   <div class="post-cta__actions">
-    <a
+    <button
+      type="button"
       class="button-filled"
-      href="#contactForm"
+      data-bs-toggle="modal"
+      data-bs-target="#contactModal"
       style="min-width: 218px"
       data-gtm="BlogContactButton"
     >
@@ -23,5 +25,4 @@
       Schedule a Meeting
     </button>
   </div>
-  {{> modals/calendly-modal}}
 </div>
