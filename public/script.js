@@ -12,6 +12,7 @@
     initLazyLoadImage();
     initLazyLoadRecaptcha();
     initLazyLoadCalendly();
+    initLazyLoadSubscribeForm();
     initCopyrightYear();
   });
 
@@ -376,6 +377,36 @@
         };
 
         window.addEventListener("message", listener);
+      }
+    });
+  }
+
+  function initLazyLoadSubscribeForm() {
+    const subscribeModal = document.getElementById("subscribeModal");
+
+    if (!subscribeModal) {
+      return;
+    }
+
+    subscribeModal.addEventListener("show.bs.modal", function () {
+      if (!document.getElementById("hubspotScript")) {
+        const hubspotScript = document.createElement("script");
+        hubspotScript.id = "hubspotScript";
+        hubspotScript.async = true;
+        document.body.appendChild(hubspotScript);
+        hubspotScript.onload = () => {
+          hbspt.forms.create({
+            region: "na1",
+            portalId: "2559567",
+            formId: "2aa180cf-79c4-4dce-9aa3-9d65d55b587f",
+            target: "#hubspot-subscribe-form",
+          });
+          const loader = subscribeModal.querySelector(".loader");
+          if (loader) {
+            loader.style.display = "none";
+          }
+        };
+        hubspotScript.src = "https://js.hsforms.net/forms/embed/v2.js";
       }
     });
   }
