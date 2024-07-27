@@ -517,16 +517,19 @@ footer .icons img {
   gap: 20px;
 }
 
-.calendly-modal .modal-dialog {
+.calendly-modal .modal-dialog,
+.subscribe-modal .modal-dialog {
   box-shadow: 0px 20px 60px rgba(0, 0, 0, 0.1);
 }
 
-.calendly-modal .modal-content {
+.calendly-modal .modal-content,
+.subscribe-modal .modal-content {
   background-color: transparent;
   border: none;
 }
 
-.calendly-modal .modal-body {
+.calendly-modal .modal-body,
+.subscribe-modal .modal-body {
   position: relative;
   border-radius: 10px;
   background-color: #fff;
@@ -534,7 +537,8 @@ footer .icons img {
   overflow: hidden;
 }
 
-.calendly-modal .close {
+.calendly-modal .close,
+.subscribe-modal .close {
   position: absolute;
   z-index: 10;
   top: 10px;
@@ -549,7 +553,8 @@ footer .icons img {
   opacity: 0.8;
 }
 
-.calendly-modal .loader-container {
+.calendly-modal .loader-container,
+.subscribe-modal .loader-container {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -566,6 +571,14 @@ footer .icons img {
   display: inline-block;
   box-sizing: border-box;
   animation: rotation 1s linear infinite;
+}
+
+.subscribe-form {
+  padding: 32px;
+}
+
+.subscribe-form p {
+  color: #33475b;
 }
 
 @keyframes rotation {
@@ -1356,89 +1369,6 @@ input[name="b_13b9659b659dcce482526ea2d_11a1b7987b"] {
   border-color: var(--color-secondary-hover);
 }
 
-.subscribe-modal .modal-content {
-  border-radius: 10px;
-  background-color: transparent;
-  border: none;
-}
-
-.subscribe-modal .modal-body {
-  padding: 0;
-}
-
-.subscribe-form {
-  position: relative;
-  background-color: var(--color-secondary);
-  border-radius: 10px;
-  padding: 30px 30px 40px 30px;
-  color: #fff;
-}
-
-.subscribe-form p {
-  margin-bottom: 20px;
-}
-
-.subscribe-form .privacy {
-  margin-bottom: 0;
-}
-
-.subscribe-form .privacy a {
-  color: #fff;
-  text-decoration: underline;
-}
-
-.subscribe-form .close {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 25px;
-  height: 25px;
-  color: #fff;
-  font-size: 16px;
-  text-shadow: none;
-  opacity: 0.8;
-}
-
-.subscribe-form .form-control {
-  background: #fcfcfc;
-  border-radius: 5px;
-  padding: 10px 15px;
-  font-size: 18px;
-  height: 50px;
-}
-
-.subscribe-form .form-check-input {
-  margin-top: 6px;
-}
-
-.subscribe-form .submit-button {
-  display: flex;
-  width: 100%;
-  height: 50px;
-  justify-content: center;
-  align-items: center;
-  padding: 12px 40px;
-  color: #fff;
-  border-radius: 5px;
-  font-size: 18px;
-  line-height: 1;
-  transition: 0.3s;
-}
-
-.subscribe-form .submit-button {
-  background-color: var(--color-primary);
-  border: 1px solid var(--color-primary);
-}
-
-.subscribe-form .submit-button:hover,
-.subscribe-form .submit-button:focus-visible {
-  background-color: #fff;
-  color: var(--color-primary);
-}
-
 .tag-description {
   font-size: 18px;
 }
@@ -1673,16 +1603,6 @@ input[name="b_13b9659b659dcce482526ea2d_11a1b7987b"] {
 
   .contact-form .form-floating {
     max-width: 370px;
-  }
-
-  .subscribe-form {
-    padding: 60px;
-  }
-
-  .subscribe-form .close {
-    width: 40px;
-    height: 40px;
-    font-size: 24px;
   }
 }
 

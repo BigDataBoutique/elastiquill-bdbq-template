@@ -8,148 +8,25 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-body">
-        <form
-          id="subscribeForm"
-          class="subscribe-form needs-validation"
-          action="/api/blog/subscribe"
-          method="post"
-        >
-          <button
-            type="button"
-            class="close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-            style="filter: invert(1)"
-          >
-            <span aria-hidden="true" class="fa fa-times"></span>
-          </button>
+        <div class="loader-container">
+          <span class="loader"></span>
+        </div>
+        <div class="subscribe-form" style="min-width: 320px; min-height: 630px">
           <h4>Subscribe to Monthly Newsletter</h4>
           <p>
             Keep up-to-date with important changes in big data technologies;
             discover new features and tools for your business.
           </p>
-          <div class="mb-3">
-            <input
-              id="input-first-name"
-              type="text"
-              class="form-control"
-              name="firstname"
-              placeholder="First Name"
-              value=""
-              aria-label="First Name (required)"
-              required
-            />
-          </div>
-          <div class="mb-3">
-            <input
-              id="input-last-name"
-              type="text"
-              class="form-control"
-              name="lastname"
-              placeholder="Last Name (optional)"
-              value=""
-              aria-label="Last Name"
-            />
-          </div>
-          <div class="mb-3">
-            <input
-              id="input-email"
-              type="email"
-              class="form-control"
-              name="email"
-              placeholder="Email"
-              value=""
-              aria-label="Email (required)"
-              required
-            />
-          </div>
-          <div class="mb-3">
-            <div class="form-check">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                id="invalidCheck"
-                name="newsletter"
-                required
-                checked
-              />
-              <label class="form-check-label" for="invalidCheck">
-                Yes, I would like to receive monthly updates on big data
-                technologies
-              </label>
-            </div>
-          </div>
-          <input
-            name="b_13b9659b659dcce482526ea2d_11a1b7987b"
-            type="text"
-            tabindex="-1"
-            value=""
-          />
-          <input
-            name="privacy"
-            type="checkbox"
-            tabindex="-1"
-            checked="checked"
-            hidden
-          />
-          <input
-            name="post"
-            type="hidden"
-            tabindex="-1"
-            value="{{ post.title }}"
-          />
-          <input
-            name="tags"
-            type="hidden"
-            tabindex="-1"
-            value="{{#each post.tags}}{{
-              this.key
-            }}{{#unless @last}};{{/unless}}{{/each}}"
-          />
-          <div class="mb-3">
-            <div
-              class="g-recaptcha"
-              data-sitekey="{{ recaptchaClientKey }}"
-            ></div>
-          </div>
-          <button type="submit" class="submit-button">Subscribe</button>
-          <div class="mt-3 privacy">
-            <div class="form-check-label">
-              By clicking the button above you’re agreeing to our
-              <a href="https://bigdataboutique.com/privacy" target="_blank">
-                Privacy Policy
-              </a>
-            </div>
-          </div>
-          <div class="toast-container position-fixed bottom-0 end-0 p-3">
-            <div
-              class="success-toast toast align-items-center text-bg-success text-start border-0"
-              role="alert"
-              aria-live="assertive"
-              aria-atomic="true"
-            >
-              <div class="d-flex">
-                <div class="toast-body" style="font-size: 18px">
-                  Thanks for subscribing to our newsletter!
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="toast-container position-fixed bottom-0 end-0 p-3">
-            <div
-              class="error-toast toast align-items-center text-bg-danger text-start border-0"
-              role="alert"
-              aria-live="assertive"
-              aria-atomic="true"
-            >
-              <div class="d-flex">
-                <div class="toast-body" style="font-size: 18px">
-                  Failed to process your submission.<br />Please try again!
-                </div>
-              </div>
-            </div>
-          </div>
-        </form>
+          <div id="hubspot-subscribe-form"></div>
+        </div>
+        <button
+          type="button"
+          class="close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true" class="fa fa-times"></span>
+        </button>
       </div>
     </div>
   </div>
