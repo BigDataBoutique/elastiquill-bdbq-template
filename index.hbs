@@ -1,6 +1,6 @@
 <main class="content">
   {{#if (and posts.length (eq pageNum 1) (eq template "index"))}}
-    {{> fresh-post (head posts) index="true" blogUrl=blogUrl}}
+    {{> fresh-post (head posts)}}
   {{/if}}
   <div class="container mt-5">
     {{> filter-box}}
@@ -21,3 +21,52 @@
   </div>
   {{> contact subject="Index page"}}
 </main>
+
+
+{{#*inline "fresh-post"}}
+  <div class="fresh-post">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-5 order-lg-2">
+          <div class="fresh-post__img">
+            <a href="{{this.url}}">
+              {{> imgix-image src=this.metadata.header_image_url alt=this.title}}
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-7 order-lg-1">
+          <div class="fresh-post__content">
+            <div class="fresh-post__time">
+              <time datetime="{{this.published_at}}">
+                {{this.published_at_str}}
+              </time>
+              {{#if this.reading_time}}
+                <span>{{this.reading_time}}</span>
+              {{/if}}
+            </div>
+            <h1 class="fresh-post__title">
+              <a href="{{this.url}}">
+                {{this.title}}
+              </a>
+            </h1>
+            <div class="fresh-post__badges post-badges">
+              {{#if series}}
+              <a class="serie serie-solid" href="{{series_url}}">
+                Series: {{series}}
+              </a>
+              {{/if}}
+              {{#each tags}}
+                <a class="tag tag-solid" href="{{this.url}}">
+                  {{this.key}}
+                </a>
+              {{/each}}
+            </div>
+            <blockquote cite="{{this.full_url}}" class="fresh-post__excerpt">{{{this.excerpt}}}</blockquote>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{{/inline}}
+
+
