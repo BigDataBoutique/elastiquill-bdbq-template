@@ -1,6 +1,6 @@
 <main class="content">
-  {{> fresh-post post blogUrl=blogUrl}}
   <div class="container">
+    {{> post-header post blogUrl=blogUrl}}
     <div class="post-row">
       <article class="post-row__content">
         <div class="post-row__inner">
@@ -18,20 +18,6 @@
               {{> cta}}
             </div>
           {{/if}}
-
-          <div class="comments-widget__container" id="comments-container">
-            {{#if post.comments}}
-              <h2>Comments ({{post.comments.length}})</h2>
-            {{/if}}
-            {{#each post.comments}}
-              {{> comment this index=@index }}
-            {{/each}}
-
-            {{#if post.allow_comments}}
-              {{> comment-form}}
-            {{else}}
-            {{/if}}
-          </div>
         </div>
       </article>
       <div class="post-row__sidebar">
@@ -45,29 +31,11 @@
             <img src="/static/theme/img/rss.svg" alt="rss"/>
           </a>
         </div>
-        
-        {{#if post.more_like_this}}
-        <div class="post-row__related">
-          <h4>More Like This</h4>
-          {{#each post.more_like_this}}
-          <a href="{{this.url}}">
-            <div>
-              <time datetime="{{this.published_at}}">
-                {{this.published_at_str}}
-              </time>
-              <span>{{this.title}}</span>
-            </div>
-            {{> imgix-image src=this.metadata.header_image_url lazyLoad=true}}
-          </a>
-          {{/each}}
-        </div>
-        {{/if}}
-        
         {{#if metaKeywords}}
           <a class="vertical-banner d-flex d-lg-none justify-content-center" href="{{#if isLocalhost}}http://localhost:3000{{else}}https://bigdataboutique.com{{/if}}/b/redirect/{{toLowerCase metaKeywords}}?utm_source=blog&utm_medium=banner300x300&utm_campaign=es&utm_content=WCE" target="_blank" rel="noopener nofollow noreferrer">
             <img src="{{#if isLocalhost}}http://localhost:3000{{else}}https://bigdataboutique.com{{/if}}/b/blog/{{toLowerCase metaKeywords}}?v=0" alt="{{toLowerCase metaKeywords}}" />
           </a>
-          <a class="vertical-banner d-none d-lg-flex justify-content-center" href="{{#if isLocalhost}}http://localhost:3000{{else}}https://bigdataboutique.com{{/if}}/b/redirect/{{toLowerCase metaKeywords}}?utm_source=blog&utm_medium=banner300x600&utm_campaign=es&utm_content=ete" target="_blank" rel="noopener nofollow noreferrer">
+          <a id="vertical-banner-desktop" class="vertical-banner d-none d-lg-flex justify-content-center" href="{{#if isLocalhost}}http://localhost:3000{{else}}https://bigdataboutique.com{{/if}}/b/redirect/{{toLowerCase metaKeywords}}?utm_source=blog&utm_medium=banner300x600&utm_campaign=es&utm_content=ete" target="_blank" rel="noopener nofollow noreferrer">
             <img src="{{#if isLocalhost}}http://localhost:3000{{else}}https://bigdataboutique.com{{/if}}/b/blog/{{toLowerCase metaKeywords}}?v=1" alt="{{toLowerCase metaKeywords}}" />
           </a>
         {{/if}}
@@ -75,7 +43,24 @@
     </div>
   </div>
 </main>
-
+<div class="container">
+  {{#if post.more_like_this}}
+  <div class="post-row__related">
+    <h4>More Like This</h4>
+    {{#each post.more_like_this}}
+    <a href="{{this.url}}">
+      <div>
+        <time datetime="{{this.published_at}}">
+          {{this.published_at_str}}
+        </time>
+        <span>{{this.title}}</span>
+      </div>
+      {{> imgix-image src=this.metadata.header_image_url lazyLoad=true alt=this.title}}
+    </a>
+    {{/each}}
+  </div>
+  {{/if}}
+</div>
 <div class="divider"></div>
 {{> contact subject=post.title}}
 
