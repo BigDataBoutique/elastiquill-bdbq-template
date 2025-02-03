@@ -165,8 +165,10 @@
 
   function initPostThumbnail() {
     const postThumbnail = document.getElementById("postThumbnail");
+    if (!postThumbnail) return
+    
     const display = window.getComputedStyle(postThumbnail, null).display;
-    if (!postThumbnail || display !== "none") return;
+    if (display !== "none") return;
 
     const postContent = document.querySelector(".post-content");
     if (postContent) {
