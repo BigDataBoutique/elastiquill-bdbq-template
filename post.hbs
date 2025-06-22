@@ -1,3 +1,94 @@
+<style>
+.digest-item {
+    margin-bottom: 40px;
+    padding-bottom: 40px;
+    border-bottom: 2px solid #eee;
+}
+.digest-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+.digest-item .item-header {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+    align-items: flex-start;
+}
+.digest-item .thumbnail {
+    flex-shrink: 0;
+    width: 160px;
+    height: 90px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.digest-item .thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+.digest-item .thumbnail:hover img {
+    transform: scale(1.05);
+}
+.digest-item .item-title {
+    flex: 1;
+}
+.digest-item .item-title h3 {
+    color: #2c3e50;
+   margin-top: 0;
+    margin-bottom: 8px;
+    line-height: 1.3;
+}
+.digest-item .item-title h3 a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.digest-item .item-title h3 a:hover {
+    color: #667eea;
+}
+.digest-item .source {
+    display: inline-block;
+    background-color: #e9ecef;
+    color: #6c757d;
+    padding: 4px 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.digest-item .source.video {
+    background-color: #ff000015;
+    color: #ff0000;
+}
+.digest-item .source.blog {
+    background-color: #28a74515;
+    color: #28a745;
+}
+.digest-item .source.whitepaper {
+    background-color: #6f42c115;
+    color: #6f42c1;
+}
+.digest-item .summary {
+    margin-bottom: 20px;
+}
+.digest-item .read-more {
+    display: inline-block;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.digest-item .read-more:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+</style>
+
 <main class="content">
   <div class="container">
     {{> post-header post blogUrl=blogUrl}}
